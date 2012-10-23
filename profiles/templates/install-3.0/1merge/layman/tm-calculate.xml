@@ -1,0 +1,13 @@
+# Calculate append=replace
+<?xml version="1.0" ?>                                                                                                     
+<repositories version="1.0">
+  <repo priority="50" quality="experimental" status="unofficial">
+    <name>tm-calculate</name>
+    <description>Custom Calculate Linux Overlay for TaxiMaxim</description>
+    <homepage>https://github.com/tm-calculate</homepage>
+    <owner>
+      <email>fedotov_sv@taximaxim.ru</email>
+    </owner>
+    <source type="git">git://github.com/tm-calculate/tm-calculate.git</source>
+  </repo>
+</repositories>

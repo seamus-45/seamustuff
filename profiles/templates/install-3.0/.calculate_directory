@@ -1,0 +1,1 @@
+# Calculate append=skip cl_name==calculate-install&&cl_ver>=3.0&&pkg(sys-apps/calculate-install)>=3.0.0_beta1
