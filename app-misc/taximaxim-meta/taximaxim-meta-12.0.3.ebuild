@@ -18,6 +18,7 @@ cdistro_CLDX
 
 RDEPEND="${RDEPEND}
 	!sys-apps/calculate
+	!app-misc/calculate-meta
 "
 
 RDEPEND="${RDEPEND}
