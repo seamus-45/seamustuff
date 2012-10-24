@@ -1,0 +1,3 @@
+# Calculate pkg(app-portage/layman)!= path=/tmp name=sync-tm-calculate exec=/bin/bash
+layman -s tm-calculate && eix-update && mkdir -p /var/calculate/templates && mount /var/calculate/templates
+
