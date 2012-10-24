@@ -22,6 +22,7 @@ RDEPEND="
 		x11-themes/gnome-themes-standard
 		x11-themes/gnome-icon-theme
 		x11-themes/tango-icon-theme
+		x11-themes/Albatross
 	)
 "
 
