@@ -1,6 +1,0 @@
-# Calculate pkg(app-portage/layman)!= path=/tmp name=sync-tm-calculate exec=/bin/bash comment=#
-#
-# Sync our custom overlay and mount our templates to system location (NEED FIX)
-
-layman -s tm-calculate && eix-update && mkdir -p /var/calculate/templates && mount /var/calculate/templates
-

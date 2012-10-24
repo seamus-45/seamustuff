@@ -1,0 +1,6 @@
+# Calculate pkg(app-portage/layman)!= path=/tmp name=sync-tm-calculate exec=/bin/bash comment=#
+#
+# Sync our custom overlay (NEED FIX)
+
+layman -s tm-calculate && eix-update
+
