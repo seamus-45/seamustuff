@@ -1,0 +1,2 @@
+# Calculate comment=# pkg(app-portage/layman)!=
+/var/lib/layman/tm-calculate/profiles/templates /var/calculate/templates none  bind 0 0
