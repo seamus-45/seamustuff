@@ -1,9 +1,0 @@
-# Calculate exists(/etc/portage/package.use/clsd)==
-
-x11-misc/xscreensaver jpeg
-net-im/pidgin networkmanager -gstreamer
-x11-misc/xscreensaver -jpeg
-net-misc/networkmanager bluetooth connection-sharing dhcpcd introspection kernel_linux modemmanager nss ppp wext wimax
-media-sound/audacious chardet
-app-text/evince dbus djvu gnome-keyring introspection postscript tiff
-dev-lang/python sqlite
