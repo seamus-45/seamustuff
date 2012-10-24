@@ -2,5 +2,5 @@
 #
 # Sync our custom overlay (NEED FIX)
 
-layman -s tm-calculate && eix-update
+layman -s tm-calculate 2>&1 >/dev/null && eix-update 2>&1 >/dev/null
 
