@@ -22,7 +22,7 @@ RDEPEND="${RDEPEND}
 "
 
 RDEPEND="${RDEPEND}
-	cdistro_CLDX? ( app-misc/cldx-meta )
+	cdistro_CLDX? ( app-misc/tm-cldx-meta )
 "
 
 pkg_postinst()
