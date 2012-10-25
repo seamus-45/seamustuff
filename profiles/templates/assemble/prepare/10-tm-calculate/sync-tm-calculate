@@ -1,5 +1,5 @@
 # Calculate path=/tmp name=sync-tm-calculate exec=/bin/bash
 
 # Add & Sync our custom overlay (NEED FIX)
-chroot #-cl_assemble_path-# /bin/bash -c "env-update && source /etc/profile && layman -S" 2>&1 >/dev/null && \
-chroot #-cl_assemble_path-# /bin/bash -c "env-update && source /etc/profile && layman -a tm-calculate" 2>&1 >/dev/null
+chroot #-cl_assemble_path-# /bin/bash -c "env-update && source /etc/profile && layman -S" 2>/dev/null >/dev/null && \
+chroot #-cl_assemble_path-# /bin/bash -c "env-update && source /etc/profile && layman -a tm-calculate" 2>/dev/null >/dev/null
