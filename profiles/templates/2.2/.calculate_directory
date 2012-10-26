@@ -1,0 +1,1 @@
+# Calculate append=skip cl_name==calculate-install&&cl_ver<3.0||cl_name==calculate-desktop&&cl_ver<3.0||cl_name==calculate-client&&cl_ver<3.0||cl_name==calculate-builder&&cl_ver<3.0||cl_name==calculate-assemble&&cl_ver<3.0
