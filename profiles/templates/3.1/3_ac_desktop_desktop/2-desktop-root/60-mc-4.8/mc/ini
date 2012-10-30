@@ -1,0 +1,18 @@
+# Calculate format=kde
+
+[Midnight-Commander]
+skin=/root/.config/mc/skins/modarcon16root-defbg.ini
+
+verbose=1
+pause_after_run=2
+shell_patterns=1
+auto_save_setup=0
+confirm_exit=0
+classic_progressbar=1
+
+[Layout]
+menubar_visible=0
+message_visible=0
+keybar_visible=0
+free_space=1
+

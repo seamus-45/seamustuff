@@ -1,0 +1,30 @@
+# Calculate append=replace
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<account version='1.0'>
+	<account>
+		<protocol>prpl-jabber</protocol>
+		<name>#-ur_login-#@taximaxim.ru/office</name>
+		<password></password>
+		<alias>#-ur_fullname-#</alias>
+		<settings>
+			<setting name='require_tls' type='bool'>1</setting>
+			<setting name='check-mail' type='bool'>0</setting>
+			<setting name='connect_server' type='string'>taximaxim.ru</setting>
+			<setting name='old_ssl' type='bool'>0</setting>
+			<setting name='connection_security' type='string'>require_tls</setting>
+			<setting name='auth_plain_in_clear' type='bool'>1</setting>
+			<setting name='ft_proxies' type='string'> </setting>
+			<setting name='port' type='int'>5222</setting>
+			<setting name='custom_smileys' type='bool'>1</setting>
+		</settings>
+		<settings ui='gtk-gaim'>
+			<setting name='auto-login' type='bool'>1</setting>
+		</settings>
+		<proxy>
+			<type>none</type>
+		</proxy>
+		<current_error/>
+	</account>
+</account>
+

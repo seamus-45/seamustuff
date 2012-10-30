@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="sudo-mode" mtime="1351575211" type="bool" value="true"/>
+</gconf>

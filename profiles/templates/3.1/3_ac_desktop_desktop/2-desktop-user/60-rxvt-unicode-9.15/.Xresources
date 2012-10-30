@@ -1,0 +1,82 @@
+# Calculate append=replace
+! для применения настроек в текущей сессии используйте `xrdb -load ~/.Xresources`
+
+Xft.antialias: true
+Xft.dpi: 96
+Xft.rgba: none
+Xft.hinting: true
+Xft.hintstyle: hintslight
+
+URxvt.perl-lib: /home/#-ur_login-#/.config/urxvt/perl
+URxvt.perl-ext-common: default,tabbedex,url-select
+URxvt.tabbed.tabbar-fg: 0
+URxvt.tabbed.tabbar-bg: 7
+URxvt.tabbed.tab-fg:    15
+URxvt.tabbed.tab-bg:    0
+URxvt.tabbed.title-fg:  0
+URxvt.tabbed.title-bg:  7
+URxvt.keysym.M-u:perl:url-select:select_next
+URxvt.urgentOnBell: True
+
+URxvt.urlLauncher: /usr/bin/chromium
+URxvt.underlineURLs: true
+URxvt.colorUL: #6495ED
+
+URxvt.depth: 32
+URxvt.background: rgba:04f0/0fff/0fff/cccc
+URxvt.foreground: lightcyan4
+URxvt.cursorColor: lightcyan3
+URxvt.underlineColor: white
+Rxvt.shading: 70
+Rxvt.tintColor: cyan
+URxvt.inheritPixmap: false
+
+URxvt.pointerBlank: true
+URxvt.pointerBlankDelay: 3
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.scrollTtyKeypress: true
+URxvt.scrollTtyOutput: false
+URxvt.searchable-scrollback: M-space
+URxvt.visualBell: true
+
+URxvt.font: xft:Droid Sans Mono Slashed:pixelsize=13
+URxvt.boldFont: xft:Droid Sans Mono Slashed:bold
+
+URxvt.geometry: 100x35
+!URxvt.termName: rxvt
+
+URxvt.scrollBar: false
+URxvt.scrollstyle: plain
+URxvt.scrollBar_right: true
+URxvt.scrollColor: #1A1A1A
+URxvt.jumpScroll: true
+URxvt.scrollWithBuffer: true
+URxvt.saveLines: 8192
+
+! color the man
+URxvt.colorMode: on
+URxvt.boldColors: on
+URxvt.dynamicColors: on
+URxvt.colorULMode: on
+URxvt.underLine: off
+URxvt.colorBDMode: on
+URxvt.colorBD:  cyan
+
+URxvt.color0: #3f3f3f
+URxvt.color1: #705050
+URxvt.color2: #60b48a
+URxvt.color3: #dfaf8f
+URxvt.color4: #9ab8d7
+URxvt.color5: #dc8cc3
+URxvt.color6: #8cd0d3
+URxvt.color7: #dcdccc
+URxvt.color8: #709080
+URxvt.color9: #dca3a3
+URxvt.color10: #72d5a3
+URxvt.color11: #f0dfaf
+URxvt.color12: #94bff3
+URxvt.color13: #ec93d3
+URxvt.color14: #93e0e3
+URxvt.color15: #ffffff
+

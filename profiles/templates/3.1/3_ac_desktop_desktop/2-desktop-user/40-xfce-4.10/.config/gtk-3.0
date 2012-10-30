@@ -1,0 +1,1 @@
+# Calculate pkg(x11-themes/Bluebird)!=&&pkg(xfce-base/libxfce4ui)!= path=~/.config link=/usr/share/themes/Bluebird/gtk-3.0 symbolic force

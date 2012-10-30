@@ -1,0 +1,15 @@
+display_type=0
+group_policy=2
+default_group=0
+never_modify_config=false
+model=pc105
+layouts=#-os_locale_xkbname-#
+variants=,
+#?os_locale_xkb==us#
+toggle_option=
+#os_locale_xkb#
+#?os_locale_xkb!=us#
+toggle_option=grp:ctrl_shift_toggle,grp_led:scroll
+#os_locale_xkb#
+compose_key_position=
+display_textsize=0

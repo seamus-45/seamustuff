@@ -1,0 +1,125 @@
+# Calculate format=xml_xfce append=replace
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-panel" version="1.0">
+  <property name="panels" type="array">
+    <value type="int" value="0"/>
+    <property name="panel-0" type="empty">
+      <property name="position" type="string" value="p=8;x=0;y=0"/>
+      <property name="size" type="uint" value="24"/>
+      <property name="length" type="uint" value="100"/>
+      <property name="position-locked" type="bool" value="true"/>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="1"/>
+#?env(client.os_remote_auth)==||ur_domain_set==off#	
+        <value type="int" value="20"/>
+#env#
+#?env(client.os_remote_auth)!=&&ur_domain_set==on#
+        <value type="int" value="21"/>
+				<value type="int" value="22"/>
+#env#
+#?env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=#
+        <value type="int" value="23"/>
+#env#
+        <value type="int" value="8"/>
+        <value type="int" value="5"/>
+        <value type="int" value="3"/>
+        <value type="int" value="12"/>
+        <value type="int" value="6"/>
+        <value type="int" value="11"/>
+        <value type="int" value="10"/>
+        <value type="int" value="9"/>
+        <value type="int" value="4"/>
+        <value type="int" value="7"/>
+        <value type="int" value="2"/>
+      </property>
+      <property name="background-alpha" type="uint" value="95"/>
+      <property name="mode" type="uint" value="0"/>
+      <property name="length-adjust" type="bool" value="true"/>
+      <property name="nrows" type="uint" value="1"/>
+    </property>
+  </property>
+  <property name="plugins" type="empty">
+    <property name="clipman" type="empty">
+      <property name="settings" type="empty">
+        <property name="add-primary-clipboard" type="bool" value="false"/>
+        <property name="history-ignore-primary-clipboard" type="bool" value="false"/>
+      </property>
+      <property name="tweaks" type="empty">
+        <property name="never-confirm-history-clear" type="bool" value="false"/>
+      </property>
+    </property>
+    <property name="plugin-1" type="string" value="applicationsmenu">
+      <property name="show-button-title" type="bool" value="false"/>
+      <property name="button-icon" type="string" value="start-here-xfce"/>
+    </property>
+    <property name="plugin-2" type="string" value="actions">
+      <property name="appearance" type="uint" value="0"/>
+      <property name="items" type="array">
+#?env(client.os_remote_auth)!=&&ur_domain_set==on#
+        <value type="string" value="+logout-dialog"/>
+#env#
+#?env(client.os_remote_auth)==||ur_domain_set!=on#
+        <value type="string" value="+logout"/>
+#env#
+      </property>
+    </property>
+    <property name="plugin-3" type="string" value="tasklist">
+      <property name="flat-buttons" type="bool" value="true"/>
+    </property>
+    <property name="plugin-4" type="string" value="pager"/>
+    <property name="plugin-6" type="string" value="systray">
+      <property name="plugin-7" type="string" value="showdesktop"/>
+      <property name="names-visible" type="array">
+        <value type="string" value="апплет networkmanager"/>
+        <value type="string" value="cl-console-gui"/>
+        <value type="string" value="pidgin"/>
+        <value type="string" value="blueman-applet"/>
+        <value type="string" value="deluge"/>
+        <value type="string" value="менеджер буфера обмена (clipman)"/>
+        <value type="string" value="liferea"/>
+        <value type="string" value="claws-mail"/>
+      </property>
+    </property>
+    <property name="plugin-8" type="string" value="showdesktop"/>
+    <property name="plugin-10" type="string" value="xkb-plugin"/>
+#?pkg(xfce-extra/xfce4-mixer)<4.10#
+    <property name="plugin-11" type="string" value="xfce4-mixer-plugin"/>
+#pkg#
+#?pkg(xfce-extra/xfce4-mixer)>=4.10#
+    <property name="plugin-11" type="string" value="mixer">
+      <property name="sound-card" type="string" value="#-cl_desktop_gst_card-#"/>
+      <property name="track" type="string" value="#-cl_desktop_gst_masterchannel-#"/>
+    </property>
+#pkg#
+    <property name="plugin-7" type="string" value="actions">
+      <property name="appearance" type="uint" value="0"/>
+      <property name="invert-orientation" type="bool" value="false"/>
+      <property name="items" type="array">
+        <value type="string" value="+lock-screen"/>
+        <value type="string" value="-switch-user"/>
+      </property>
+    </property>
+    <property name="plugin-20" type="string" value="directorymenu">
+      <property name="base-directory" type="string" value="/home/#-ur_login-#"/>
+      <property name="icon-name" type="string" value="folder_home"/>
+    </property>
+    <property name="plugin-21" type="string" value="directorymenu">
+      <property name="base-directory" type="string" value="/home/#-ur_login-#/Home"/>
+      <property name="icon-name" type="string" value="folder_home"/>
+    </property>
+    <property name="plugin-22" type="string" value="directorymenu">
+      <property name="base-directory" type="string" value="/home/#-ur_login-#/Share"/>
+      <property name="icon-name" type="string" value="gnome-fs-share"/>
+    </property>
+    <property name="plugin-23" type="string" value="directorymenu">
+      <property name="base-directory" type="string" value="/home/#-ur_login-#/FTP"/>
+      <property name="icon-name" type="string" value="zen-icon"/>
+    </property>
+    <property name="plugin-12" type="string" value="separator">
+      <property name="expand" type="bool" value="true"/>
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-9" type="string" value="datetime"/>
+  </property>
+</channel>

@@ -79,7 +79,7 @@ RDEPEND="${RDEPEND}
 		net-analyzer/traceroute
 		!x11-misc/ktsuss
 		sys-block/gparted
-		x11-terms/terminal
+		x11-terms/rxvt-unicode
 	)
 "
 

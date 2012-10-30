@@ -1,0 +1,11 @@
+# Calculate format=xml_gconf
+<?xml version="1.0"?>
+<gconf>
+	<entry name="browser" mtime="1351492254" type="string">
+		<stringvalue>xdg-open %s</stringvalue>
+	</entry>
+	<entry name="browser_place" mtime="1351492254" type="int" value="3"/>
+	<entry name="browser_id" mtime="1351492254" type="string">
+		<stringvalue>manual</stringvalue>
+	</entry>
+</gconf>
