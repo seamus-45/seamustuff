@@ -56,6 +56,11 @@
 								<Filename>blueman-manager.desktop</Filename>
 								<Filename>xfce-mouse-settings.desktop</Filename>
 								<Filename>xfce4-notifyd-config.desktop</Filename>
+								<Filename>Gentoo-system-config-printer.desktop</Filename>
+								<Filename>gdmphotosetup.desktop</Filename>
+								<Filename>gdmsetup.desktop</Filename>
+								<Filename>xfce4-settings-editor.desktop</Filename>
+								<Filename>nm-connection-editor.desktop</Filename>
 						</Or>
         </Exclude>
         

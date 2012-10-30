@@ -1,3 +1,4 @@
 # Calculate format=kde link=/usr/share/applications/cups.desktop mirror 
 [Desktop Entry]
 Categories=XFCE;GTK;Settings;DesktopSettings;
+Hidden=true
