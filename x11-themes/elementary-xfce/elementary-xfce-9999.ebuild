@@ -30,6 +30,8 @@ src_prepare() {
 	find "${S}" -type f -maxdepth 1 -name '.gitignore' -exec rm -f '{}' \;
 	find "${S}" -type f -name 'README' -exec rm -f '{}' \;
 	einfo "Remove unnecessary .git files"
+	find "${S}" -type f -name 'pidgin*' -exec rm -f '{}' \;
+	einfo "Remove elementary pidgin icons"
 }
 
 src_install() {
