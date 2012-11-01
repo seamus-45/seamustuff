@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=2Gis
+Name[ru_RU]=ДубльГис
+Comment=Geographic information system
+Comment[ru_RU]=Система географического информирования
+Exec=/bin/bash -c 'WINEPREFIX="${HOME}/.wine-2gis"; GIS="${WINEPREFIX}/drive_c/Program Files/2gis/3.0/grym.exe"; if [ ! -e "${GIS}" ]; then 2gis-update.sh && wine "${GIS}"; else wine "${GIS}"; fi'
+Icon=2gis
+Type=Application
+Categories=GTK;Office;
