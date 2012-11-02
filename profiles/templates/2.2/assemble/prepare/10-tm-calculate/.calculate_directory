@@ -1,2 +1,2 @@
-# Calculate pkg(app-portage/layman)!=&&exists(/var/lib/layman/tm-calculate.xml)!=&&exists(/var/lib/layman/tm-calculate)!=1 append=skip
+# Calculate pkg(app-portage/layman)!=&&exists(/var/lib/layman/tm-calculate.xml)!= append=skip
 
