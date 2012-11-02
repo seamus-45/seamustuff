@@ -13,7 +13,8 @@ IUSE=""
 
 RDEPEND=">=gnome-extra/zenity-2.32.1
 		app-arch/unzip
-		net-misc/wget"
+		net-misc/wget
+		app-emulation/wine"
 
 S="${WORKDIR}"
 

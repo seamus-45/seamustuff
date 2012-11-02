@@ -23,6 +23,7 @@ RDEPEND="
 		x11-themes/gnome-icon-theme
 		x11-themes/tango-icon-theme
 		x11-themes/Bluebird
+		x11-themes/elementary-xfce
 	)
 "
 

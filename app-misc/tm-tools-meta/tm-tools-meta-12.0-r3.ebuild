@@ -74,6 +74,7 @@ RDEPEND="${RDEPEND}
 		sys-fs/xfsprogs
 		sys-process/htop
 		sys-process/lsof
+		dev-util/strace
 	)
 	cdistro_CLDX? (
 		net-analyzer/traceroute

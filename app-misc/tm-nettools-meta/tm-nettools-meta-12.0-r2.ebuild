@@ -20,6 +20,7 @@ RDEPEND="
 	cdistro_desktop? (
 		app-text/wgetpaste
 		net-analyzer/nmap
+		net-analyzer/fping
 		net-analyzer/vnstat
 		net-im/skype
 		www-client/chromium

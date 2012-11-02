@@ -15,6 +15,7 @@ IUSE="cdistro_CLDX linguas_en linguas_ru"
 
 RDEPEND="
 	app-editors/vim
+	app-vim/colorschemes
 	app-office/libreoffice
 	app-text/fbreader
 
@@ -24,6 +25,7 @@ RDEPEND="
 		app-text/evince
 		app-text/stardict
 		sci-calculators/galculator
+		app-misc/2gis-update
 	)
 
 	linguas_en? (
