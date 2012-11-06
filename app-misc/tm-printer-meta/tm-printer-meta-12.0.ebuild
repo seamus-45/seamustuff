@@ -25,7 +25,7 @@ RDEPEND="
 	net-print/hplip-plugin
 	net-print/samsung-unified-linux-driver
 	cdistro_CLDX? (
-		app-admin/system-config-printer-common
+		app-admin/system-config-printer-gnome
 	)
 "
 
