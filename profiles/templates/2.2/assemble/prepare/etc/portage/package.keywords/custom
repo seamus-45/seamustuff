@@ -1,0 +1,4 @@
+#required by =mail-client/claws-mail-fancy-0.9.16 (argument)
+=mail-client/claws-mail-fancy-0.9.16 ~x86
+#required by app-emulation/winetricks (argument)
+=app-emulation/winetricks-916 ~x86
