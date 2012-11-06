@@ -31,6 +31,7 @@ src_prepare() {
 	find "${S}" -type f -name 'README' -exec rm -f '{}' \;
 	einfo "Remove unnecessary .git files"
 	find "${S}" -type f -name 'pidgin*' -exec rm -f '{}' \;
+	find "${S}" -type l -name 'pidgin*' -exec rm -f '{}' \;
 	einfo "Remove elementary pidgin icons"
 }
 
