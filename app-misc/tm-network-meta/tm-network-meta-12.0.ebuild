@@ -32,6 +32,7 @@ RDEPEND="
 	)
 	cdistro_CLDX? (
 		gnome-extra/nm-applet
+		net-wireless/blueman
 	)
 "
 
