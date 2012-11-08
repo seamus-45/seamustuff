@@ -1,0 +1,4 @@
+# Calculate format=openrc
+
+clock="UTC"
+clock_systohc="YES"
