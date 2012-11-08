@@ -1,5 +1,0 @@
-# Calculate format=kde link=/usr/share/applications/urxvt-rxvt-unicode.desktop mirror
-[Desktop Entry]
-Name=Terminal Urxvt
-Name[ru]=Терминал Urxvt
-Categories=GTK;System;TerminalEmulator;Utility;
