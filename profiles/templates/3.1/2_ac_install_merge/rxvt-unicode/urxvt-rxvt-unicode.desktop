@@ -1,0 +1,5 @@
+# Calculate format=kde belong()!=&&pkg(x11-terms/rxvt-unicode)!= path=/usr/share/applications
+[Desktop Entry]
+Name=Terminal Urxvt
+Name[ru]=Терминал Urxvt
+Categories=GTK;System;TerminalEmulator;Utility;
