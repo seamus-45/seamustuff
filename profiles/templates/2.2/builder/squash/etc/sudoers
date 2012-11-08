@@ -1,4 +1,0 @@
-# Calculate format=patch
-<reg>^# %wheel ALL=(ALL) ALL</reg>
-<text>%wheel ALL=(ALL) ALL</text>
-
