@@ -2,7 +2,7 @@ Instructions to use this repository:
 1. emerge layman
 2. add this line to /etc/layman/layman.cfg:
   overlays  : http://www.gentoo.org/proj/en/overlays/repositories.xml
-              *file:///var/lib/layman/tm-calculate.xml*
+              file:///var/lib/layman/tm-calculate.xml
 3. run command: sudo cat >/var/lib/layman/tm-calculate.xml<<EOF
 paste text:
 <?xml version="1.0" ?>
