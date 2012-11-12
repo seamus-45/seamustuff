@@ -18,5 +18,6 @@ paste text:
   </repo>
 </repositories>
 EOF
-
+4. Sync & add our repository: layman -S && layman -s tm-calculate
+5. Enjoy! (:
 
