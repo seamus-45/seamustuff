@@ -28,6 +28,8 @@ add_address_by_click=1
 [Plugins_GTK2]
 # плагин отображения HTML сообщений
 /usr/lib/claws-mail/plugins/fancy.so
+# плагин сворачивания окна в трей
+/usr/lib/claws-mail/plugins/trayicon.so
 
 [fancy]
 auto_load_images=1
@@ -35,3 +37,9 @@ block_extern_content=1
 open_external=1
 enable_gnome_proxy=1
 
+[TrayIcon]
+# закрывать окно в трей
+close_to_tray=1
+# не минимизировать окно в трей
+hide_when_iconified=0
+hide_at_startup=0
