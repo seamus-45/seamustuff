@@ -26,7 +26,6 @@ RDEPEND="
 		www-client/chromium
 		www-apps/chromium-adblock
 		www-plugins/adobe-flash
-		net-misc/netkit-telnetd
 	)
 	cdistro_CLDX? (
 		!net-fs/fusesmb
