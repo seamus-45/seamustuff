@@ -2,8 +2,7 @@
 
 # Add and/or Sync our custom overlay
 #?exists(/var/lib/layman/tm-calculate)==#
-chroot #-cl_assemble_path-# /bin/bash -c "env-update && source /etc/profile && layman -S" 2>/dev/null >/dev/null && \
-chroot #-cl_assemble_path-# /bin/bash -c "env-update && source /etc/profile && layman -a tm-calculate" 2>/dev/null >/dev/null
+chroot #-cl_assemble_path-# /bin/bash -c "env-update && source /etc/profile && layman -S && layman -a tm-calculate" 2>/dev/null >/dev/null
 #exists#
 #?exists(/var/lib/layman/tm-calculate)!=#
 chroot #-cl_assemble_path-# /bin/bash -c "env-update && source /etc/profile && layman -s tm-calculate" 2>/dev/null >/dev/null
