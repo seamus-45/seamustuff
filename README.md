@@ -3,11 +3,13 @@ Instructions to use this repository:
 
 1.  emerge layman
 2.  add this line to /etc/layman/layman.cfg:
+
     overlays  : http://www.gentoo.org/proj/en/overlays/repositories.xml
                 file:///var/lib/layman/tm-calculate.xml
 3.  run command:
     sudo cat >/var/lib/layman/tm-calculate.xml<<EOF
 4.  paste text:
+
     <?xml version="1.0" ?>
     <repositories version="1.0">
       <repo priority="50" quality="experimental" status="unofficial">
@@ -25,5 +27,6 @@ Instructions to use this repository:
 7.  Enjoy! (:
 
 Screenshots:
+------------
 ![xfce](https://raw.github.com/tm-calculate/tm-calculate/master/images/xfce.png)
 
