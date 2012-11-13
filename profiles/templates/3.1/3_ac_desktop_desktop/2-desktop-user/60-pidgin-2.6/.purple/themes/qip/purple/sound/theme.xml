@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<theme author="taximaxim" name="Qip" type="sound">
+  <description>Classic qip sound theme</description>
+  <event file="sndMsgSent.wav" name="send_im"/>
+  <event file="sndMsg.wav" name="im_recv"/>
+  <event file="sndMsgSent.wav" name="send_chat_msg"/>
+  <event file="sndMsg.wav" name="chat_msg_recv"/>
+  <event file="sndSrvMsg.wav" name="nick_said"/>
+  <event file="sndGlobal.wav" name="login"/>
+  <event file="sndSrvMsg.wav" name="got_attention"/>
+</theme>
