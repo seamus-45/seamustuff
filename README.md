@@ -22,5 +22,5 @@ EOF
 5. Enjoy! (:
 
 Screenshots:
-![xfce](/tm-calculate/tm-calculate/master/images/xfce.png)
+![xfce](/tm-calculate/tm-calculate/blob/master/images/xfce.png)
 
