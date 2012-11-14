@@ -58,9 +58,12 @@ add_address_by_click=1
 
 [fancy]
 auto_load_images=1
-block_extern_content=1
+block_extern_content=0
 open_external=1
 enable_gnome_proxy=1
+enable_scripts=0
+enable_java=0
+enable_plugins=0
 
 [TrayIcon]
 # закрывать окно в трей
