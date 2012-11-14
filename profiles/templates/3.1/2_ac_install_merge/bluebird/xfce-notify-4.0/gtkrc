@@ -1,0 +1,25 @@
+# Calculate format=raw
+style "bird-window"
+{
+    bg[NORMAL] = "#fffacd"
+    XfceNotifyWindow::border-color = "#fffacd"
+    XfceNotifyWindow::border-radius = 10.0
+    XfceNotifyWindow::border-width = 3.0
+}
+class "XfceNotifyWindow" style "bird-window"
+
+style "bird-button"
+{
+    bg[NORMAL] = "#f3f3f3"
+    bg[PRELIGHT] = "#dbe8f2"
+    fg[NORMAL] = "#3c3c3c"
+    fg[PRELIGHT] = "#3c3c3c"
+}
+widget_class "XfceNotifyWindow.*.GtkButton*" style "bird-button"
+
+style "bird-text"
+{
+    fg[NORMAL] = "#3c3c3c"
+    GtkWidget::link-color = "#08c"
+}
+widget_class "XfceNotifyWindow.*.<GtkLabel>" style "bird-text"
