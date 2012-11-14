@@ -11,7 +11,7 @@
 #env#
 #?env(client.os_remote_auth)!=&&ur_domain_set==on#
         <value type="int" value="21"/>
-				<value type="int" value="22"/>
+        <value type="int" value="22"/>
 #env#
 #?env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=#
         <value type="int" value="23"/>
