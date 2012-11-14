@@ -42,6 +42,7 @@ RDEPEND="
 		net-misc/vino
 		net-p2p/deluge
 		x11-plugins/pidgin-hotkeys
+		x11-plugins/pidgin-toobars
 		x11-plugins/pidgin-libnotify
 		x11-plugins/purple-plugin_pack
 	)
