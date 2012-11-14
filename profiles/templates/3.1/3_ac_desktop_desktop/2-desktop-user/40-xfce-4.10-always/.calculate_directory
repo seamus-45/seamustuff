@@ -1,0 +1,1 @@
+# Calculate append=skip merge(xfdesktop)!=&&ini(domain)!=#-env(client.os_remote_auth)-#&&pkg(xfce-base/xfdesktop)>=4.10||merge(xfdesktop)!=&&ini(xsession)!=#-cl_desktop_xsession-#&&pkg(xfce-base/xfdesktop)>=4.10
