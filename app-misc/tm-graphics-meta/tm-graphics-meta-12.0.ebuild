@@ -17,7 +17,7 @@ RDEPEND="
 	media-gfx/gimp
 	cdistro_CLDX? (
 		!media-gfx/gqview
-		media-gfx/geeqie
+		media-gfx/ristretto
 		media-gfx/gtkam
 	)
 "
