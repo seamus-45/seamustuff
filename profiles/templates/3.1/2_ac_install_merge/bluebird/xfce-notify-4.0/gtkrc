@@ -2,9 +2,9 @@
 style "bird-window"
 {
     bg[NORMAL] = "#fffacd"
-    XfceNotifyWindow::border-color = "#fffacd"
+    XfceNotifyWindow::border-color = "orange"
     XfceNotifyWindow::border-radius = 10.0
-    XfceNotifyWindow::border-width = 3.0
+    XfceNotifyWindow::border-width = 0
 }
 class "XfceNotifyWindow" style "bird-window"
 
