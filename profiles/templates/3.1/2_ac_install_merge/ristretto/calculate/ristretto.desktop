@@ -1,0 +1,8 @@
+# Calculate format=kde link=/usr/share/applications/ristretto.desktop name=calculate-imageview.desktop mirror pkg(media-gfx/ristretto)!=
+
+# Update info
+#-ini(desktop.imageview, ristretto)-#
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
