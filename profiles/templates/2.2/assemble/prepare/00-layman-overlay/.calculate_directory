@@ -1,2 +1,0 @@
-# Calculate pkg(app-portage/layman)!=&&exists(/var/lib/layman/tm-calculate.xml)==  path=/var/lib name=layman
-

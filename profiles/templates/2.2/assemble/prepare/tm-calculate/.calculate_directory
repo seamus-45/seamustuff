@@ -1,0 +1,2 @@
+# Calculate pkg(app-portage/layman)!=&&exists(/var/lib/layman/tm-calculate)!= append=skip
+
