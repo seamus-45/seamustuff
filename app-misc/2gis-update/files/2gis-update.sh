@@ -3,7 +3,7 @@
 # Thanks http://habrahabr.ru/users/mizrael_666 for idea
 # Distributed under the terms of the GNU General Public License v3
 
-SRC="/tmp/2gis-install-${USERNAME}"
+SRC="/tmp/2gis-install-${USER}"
 WINEPREFIX="${HOME}/.wine-2gis"
 PREFIX="${WINEPREFIX}/drive_c/Program Files"
 mkdir -p "${SRC}"
