@@ -1,0 +1,110 @@
+#!/usr/bin/perl
+
+#    auto.cifs 1.2.0 -- Produces automount maps for mounting CIFS shared
+#    drives with Samba. See http://www.mavit.org.uk/auto.cifs.html
+#    for details.
+#
+#    Copyright Peter Oliver <auto.cifs@mavit.org.uk>, 2001-09-29
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of the GNU General Public License,
+#    version 2, as published by the Free Software Foundation.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#    http://www.opensource.org/licenses/gpl-license.html
+#
+#    History:
+#    1.2.0: Now uses cifs filesystem, not smbfs.
+#           Escape all non-word characters in share names.
+#           Log when credentials file can't be read.
+#           Based on fixes from Simon Guest.  Thanks!
+#    1.1.0: Made the thing actually work.  Thanks to Gian Piero Carrubba
+#           for pointing out that it was fundamentally broken :-)
+#           You now need to specify the user in the directory name.
+#           You now get a warning if ~/.auto.cifs is publicly readable.
+#           You can now have distinct local and remote usernames.
+#    1.0.3: Set uid and gid on share to that of "invoking" user.
+#    1.0.2: Escape spaces in names of shares with backslashes.
+#    1.0.1: Made password lookup case insensitive.
+#    1.0.0: First release.
+
+use warnings;
+use strict;
+
+# Work out what share we're after:
+my ( $host, $share, $localuser, $remoteuser );
+if ( $ARGV[0] =~ m/^(.+?):(.+):(.+):(.+)$/ ) {
+    $host = $1;
+    $share = $2;
+    $localuser = $3;
+    $remoteuser = $4;
+}
+elsif ( $ARGV[0] =~ m/^(.+):(.+):(.+)$/ ) {
+    $host = $1;
+    $share = $2;
+    $localuser = $remoteuser = $3;
+}
+elsif ( $ARGV[0] =~ m/^(.+):(.+)$/ ) {
+    $host = $1;
+    $share = $2;
+}
+else {
+    die "$0: `$ARGV[0]' is not of the form `host:share', `host:share:user', or `host:share:localuser:remoteuser'\n";
+}
+
+# Escape all non-word characters in sharename:
+$share = quotemeta $share;
+
+my ( $uid, $gid );
+if ( $localuser ) {
+    my @passwd = getpwnam( $localuser );
+    if ( not @passwd ) {
+	die "$0: No such user `$localuser' from `$ARGV[0]'\n";
+    }
+    $uid = $passwd[2];
+    $gid = $passwd[3];
+
+# Do we need a password for this share?
+    my $credentials_filename = (getpwnam( $localuser ))[7]. '/.auto.cifs';
+    if ( -e $credentials_filename ) {
+	if ( open( RC, $credentials_filename ) ) {
+	    if ( (stat RC)[2] & 044 ) {
+		print STDERR "$0: WARNING: ~$localuser/.auto.cifs is readable by someone other than the user.\n";
+	    }
+	    my ( $line, $password );
+	    '' =~ m/()/; # reset $1
+	    while ( defined( $line = <RC> ) ) {
+		next if $line =~ m/^\s*\#/;
+		if    ( $line =~ m|^\s*//$host\s+(\S+)\s+(\S+)\s*$|i ) {
+		    $password = $1 if $2 eq $remoteuser;
+		}
+		elsif ( $line =~ m|^\s*//$host\s+(\S+)\s*$|i ) {
+		    $password = $1;
+		}
+		elsif ( $line =~ m|^\s*\*\s+(\S+)\s*$| ) {
+		    $password = $1;
+		}
+		if ( $password ) {
+		    # STDERR gets logged to syslog by recent versions of autofs.
+		    print STDERR "$0: `$ARGV[0]' mounted using `-fstype=cifs,file_mode=0600,dir_mode=0700,uid=$uid,gid=$gid,username=$remoteuser,password=* ://$host/$share'\n";
+		    print STDOUT "-fstype=cifs,file_mode=0600,dir_mode=0700,uid=$uid,gid=$gid,username=$remoteuser,password=$password ://$host/$share\n";
+		    exit;
+		}
+	    }
+	}
+	else {
+	    die "$0: Cannot open $credentials_filename: $!\n";
+	}
+    }
+}
+else {
+# No user was specified, so we'll make the files owned by root:
+    $uid = $gid = 0;
+}
+
+# We don't have a password for this share, so let's try as guest:
+print STDERR "$0: `$ARGV[0]' mounted using `-fstype=cifs,uid=$uid,gid=$gid,guest ://$host/$share'\n";
+print STDOUT "-fstype=cifs,uid=$uid,gid=$gid,guest ://$host/$share\n";
