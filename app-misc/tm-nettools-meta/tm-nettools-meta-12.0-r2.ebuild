@@ -19,6 +19,7 @@ RDEPEND="
 
 	cdistro_desktop? (
 		app-text/wgetpaste
+		app-misc/checkshares
 		net-analyzer/nmap
 		net-analyzer/fping
 		net-analyzer/vnstat
