@@ -37,3 +37,4 @@ src_install() {
 	doins -r ${S}
 	default
 }
+

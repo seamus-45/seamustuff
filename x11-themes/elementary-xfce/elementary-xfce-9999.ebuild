@@ -11,7 +11,7 @@ fi
 
 inherit $GIT_ECLASS
 
-DESCRIPTION="${PN} - Elementary icons forked from upstream, extended and
+DESCRIPTION="Shimmer project - Elementary icons forked from upstream, extended and
 maintained for Xfce"
 HOMEPAGE="https://github.com/shimmerproject/${PN}"
 

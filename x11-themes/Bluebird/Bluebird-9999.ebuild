@@ -11,7 +11,7 @@ fi
 
 inherit $GIT_ECLASS
 
-DESCRIPTION="${PN} themes for GTK+ 2,3 and xfwm4"
+DESCRIPTION="Shimmer project themes for GTK+ 2,3 and xfwm4"
 HOMEPAGE="http://shimmerproject.org/project/${PN}"
 
 LICENSE="GPL-3"
