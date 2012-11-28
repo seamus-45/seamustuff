@@ -24,6 +24,7 @@ RDEPEND="
 		net-analyzer/fping
 		net-analyzer/vnstat
 		net-im/skype
+		net-misc/teamviewer
 		www-client/chromium
 		www-apps/chromium-adblock
 		www-plugins/adobe-flash
