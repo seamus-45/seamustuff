@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>ThyArmageddon+Gentoo@Gmail.com</email>
+		<name>Elijah El Lazkani</name>
+	</maintainer>
+	<longdescription lang="en">All-In-One Software for Remote Support and Online Meetings.</longdescription>
+</pkgmetadata>
