@@ -1,2 +1,3 @@
 x11-libs/cairo xcb
 app-emulation/virtualbox extensions
+www-client/chromium bindist
