@@ -26,9 +26,7 @@ RDEPEND="${RDEPEND}
 	app-misc/tm-decoration-meta
 	app-misc/tm-graphics-meta
 	app-misc/tm-multimedia-meta 
-	app-misc/tm-network-meta 
 	app-misc/tm-nettools-meta 
 	app-misc/tm-printer-meta 
 	app-misc/tm-office-meta 
-	app-misc/tm-wireless-meta 
 "
