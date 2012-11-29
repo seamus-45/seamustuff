@@ -25,12 +25,10 @@ RDEPEND="${RDEPEND}
 	app-misc/tm-xfce-meta
 	app-misc/tm-decoration-meta
 	app-misc/tm-graphics-meta
-	sys-kernel/calculate-sources 
 	app-misc/tm-multimedia-meta 
 	app-misc/tm-network-meta 
 	app-misc/tm-nettools-meta 
 	app-misc/tm-printer-meta 
 	app-misc/tm-office-meta 
-	app-misc/tm-xorg-meta 
 	app-misc/tm-wireless-meta 
 "
