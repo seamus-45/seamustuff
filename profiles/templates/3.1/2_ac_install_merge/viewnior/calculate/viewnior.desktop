@@ -1,0 +1,8 @@
+# Calculate format=kde link=/usr/share/applications/viewnior.desktop name=calculate-imageview.desktop mirror
+
+# Update info
+#-ini(desktop.imageview, viewnior)-#
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
