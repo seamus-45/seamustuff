@@ -20,8 +20,7 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-RDEPEND=">=x11-themes/tango-icon-theme-0.8.90
-		>=media-gfx/cldx-themes-12.0-r1"
+RDEPEND=">=x11-themes/tango-icon-theme-0.8.90"
 
 S="${WORKDIR}/${PN}"
 
