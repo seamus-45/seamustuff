@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Change memory settings for 32-bit systems
+CLIENTARGS=""
+uname -m | grep -q 'i.86' && CLIENTARGS="-client -Xmx256m"
+
+# Standard paths
+javabin="$(java-config -J)"
+SCDIR="/usr/lib/jitsi"
+LIBPATH="$SCDIR/lib"
+
+# Configuration files
+FELIX_CONFIG="$LIBPATH/felix.client.run.properties"
+LOG_CONFIG="$LIBPATH/logging.properties"
+
+# Command assembly
+# Add libraries and sip-communicator bundles:
+CLASSPATH="$LIBPATH/jdic_stub.jar:$LIBPATH/jdic-all.jar:$LIBPATH/felix.jar:$LIBPATH/bcprovider.jar:$SCDIR/sc-bundles/sc-launcher.jar:$SCDIR/sc-bundles/util.jar"
+# Set the system properties:
+SYSPROPS=( -Djna.library.path="$LIBPATH/native" -Dfelix.config.properties="file:$FELIX_CONFIG" -Djava.util.logging.config.file="$LOG_CONFIG" )
+# The full command:
+COMMAND=( "$javabin" $CLIENTARGS -classpath "$CLASSPATH" "${SYSPROPS[@]}" net.java.sip.communicator.launcher.SIPCommunicator )
+
+# Also add "LIBPATH/native" to LD_LIBRARY_PATH.
+jarch="$( uname -m | sed 's/i.86/i386/; s/x86_64/amd64/' )"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$(java-config -o)/jre/lib/$jarch:/usr/lib/jni:$LIBPATH/native"
+
+# Fix font anti-aliasing
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
+
+# Run the command
+cd "$SCDIR"
+exec "${COMMAND[@]}" "$@"
+
