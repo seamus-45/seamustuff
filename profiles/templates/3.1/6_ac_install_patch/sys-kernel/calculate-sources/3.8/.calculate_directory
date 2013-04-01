@@ -1,0 +1,1 @@
+# Calculate append=skip merge(sys-kernel/calculate-sources)>=3.8&&merge(sys-kernel/calculate-sources)<3.9
