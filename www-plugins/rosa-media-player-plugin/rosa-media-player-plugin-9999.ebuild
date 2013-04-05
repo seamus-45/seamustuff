@@ -29,11 +29,7 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}"
 
-src_compile() {
-	cd ${S}/romp/rosa-media-player
-	qmake
-	emake
-	cd ${S}
+src_prepare() {
 	if ! use 'rm'; then
 		sed -i '/.*rosamp-plugin-rm.*/d' rosa-media-player-plugin.pro
 	fi
@@ -45,9 +41,17 @@ src_compile() {
 	if ! use 'divx'; then
 		sed -i '/.*rosamp-plugin-dvx.*/d' rosa-media-player-plugin.pro
 	fi
+}
+
+src_compile() {
+	cd ${S}
 	emake
 	lrelease rosa-media-player-plugin.pro
+	cd ${S}/romp/rosa-media-player
+	qmake
+	emake
 }
+
 src_install() {
 	dodir /usr/$(get_libdir)/mozilla/plugins/
 	insinto /usr/$(get_libdir)/mozilla/plugins/
