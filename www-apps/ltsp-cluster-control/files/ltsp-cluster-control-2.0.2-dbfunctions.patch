@@ -1,0 +1,13 @@
+--- Admin/util/dbFunctions.php.orig	2011-01-07 21:18:38.345877655 +0100
++++ Admin/util/dbFunctions.php	2011-01-07 21:18:53.795065688 +0100
+@@ -18,8 +18,8 @@
+     // To set the debug mode, please uncomment the
+     // line containing  // $dbConnexion->debug = true;
+ 
+-	require_once '/usr/share/php/adodb/adodb.inc.php';
+-	require_once '/usr/share/php/adodb/adodb-errorpear.inc.php';
++	require_once 'adodb/adodb.inc.php';
++	require_once 'adodb/adodb-errorpear.inc.php';
+ 	require_once 'functions.php';
+ 
+ 	/**

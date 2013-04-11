@@ -1,0 +1,30 @@
+#!/sbin/runscript
+# Copyright 1999-2011 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+depend() {
+	need net
+}
+
+checkconfig() {
+	if [ ! -f ${CONFIGFILE} ]; then
+		eerror "Config file missing at ${CONFIGFILE}"
+		return 1
+	fi
+}
+
+start() {
+	ebegin "Starting ${SVCNAME}"
+	start-stop-daemon --start --startas /usr/sbin/ltsp-cluster-lbserver -- --daemon \
+	 --pidfile /var/run/ltsp-cluster-lbserver.pid \
+	 --logfile=$LOGFILE $CONFIGFILE
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping ${SVCNAME}"
+	start-stop-daemon --stop --exec /usr/sbin/ltsp-cluster-lbserver \
+	 --pidfile /var/run/ltsp-cluster-lbserver.pid
+	eend $?
+}

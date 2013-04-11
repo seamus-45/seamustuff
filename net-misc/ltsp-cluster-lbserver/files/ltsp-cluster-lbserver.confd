@@ -1,0 +1,4 @@
+# Config file for ltsp-server-lbserver init.d
+
+LOGFILE=/var/log/ltsp-cluster-lbserver.log
+CONFIGFILE=/etc/ltsp/lbsconfig.xml
