@@ -12,6 +12,11 @@ SRC_URI="http://launchpad.net/ltsp-cluster/trunk/current/+download/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
+RDEPEND="
+	dev-python/dbus-python
+	dev-python/pycrypto
+"
+DEPEND="${RDEPEND}"
 
 
 src_install() {

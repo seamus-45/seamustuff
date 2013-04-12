@@ -16,15 +16,12 @@ checkconfig() {
 
 start() {
 	ebegin "Starting ${SVCNAME}"
-	start-stop-daemon --start --name /usr/bin/ltsp-cluster-accountmanager -- --daemon \
-	 --pidfile /var/run/ltsp-cluster-accountmanager.pid \
-	 --logfile=$LOGFILE $CONFIGFILE
+	start-stop-daemon --start --pidfile /var/run/ltsp-cluster-accountmanager.pid --make-pidfile --background --exec /usr/bin/ltsp-cluster-accountmanager ${CONFIGFILE}
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping ${SVCNAME}"
-	start-stop-daemon --stop --exec /usr/sbin/ltsp-cluster-accountmanager \
-	 --pidfile /var/run/ltsp-cluster-accountmanager.pid
+	start-stop-daemon --stop --pidfile /var/run/ltsp-cluster-accountmanager.pid --exec /usr/sbin/ltsp-cluster-accountmanager 
 	eend $?
 }
