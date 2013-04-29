@@ -1,4 +1,3 @@
-# Calculate chmod=755
 #!/usr/bin/perl
 
 #    auto.cifs 1.2.0 -- Produces automount maps for mounting CIFS shared

@@ -530,8 +530,8 @@ sub tab_key_press {
       } elsif ($keysym == 0xff08) { # backspace
          substr $tab->{new_name}, -1, 1, "";
          $tab->{name} = "$tab->{new_name}█";
-      } elsif ($str !~ /[\x00-\x1f\x80-\xaf]/) {
-         $tab->{new_name} .= $str;
+      } else {
+         $tab->{new_name} .= decode("utf8", $str);
          $tab->{name} = "$tab->{new_name}█";
       }
       $self->refresh;
