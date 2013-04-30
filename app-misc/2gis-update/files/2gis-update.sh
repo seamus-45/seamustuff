@@ -4,7 +4,7 @@
 # Distributed under the terms of the GNU General Public License v3
 # 29/04/13 - Fix script for new site structure.
 
-SRC="/tmp/2gis-install-${USERNAME}"
+SRC="/tmp/2gis-install-${USER}"
 WINEPREFIX="${HOME}/.wine-2gis"
 PREFIX="${WINEPREFIX}/drive_c/Program Files"
 EXE="${PREFIX}/2gis/3.0/grym.exe"
