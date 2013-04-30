@@ -22,4 +22,4 @@
 #
 +auto.master
 
-/cifs	/etc/auto.cifs
+/network	/etc/auto.cifs
