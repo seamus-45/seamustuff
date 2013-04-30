@@ -5,6 +5,13 @@
 # author: sr.fido@gmail.com
 # ver 0.1
 
+# run only one instance (exit - if greater than one)
+if [ $(pidof -x $0 -o $$ | wc -w) -gt 1 ];
+then
+  echo Another instance is running.
+  exit 1
+fi
+
 # file with shares we should mount
 FSHARES="${HOME}/.auto.cifs.shares"
 # file for store bookmarks
@@ -12,7 +19,7 @@ FBOOKS="${HOME}/.gtk-bookmarks"
 # file with domain secret
 FSECRET="${HOME}/.auto.cifs"
 # autofs directory
-DAUTOFS="/cifs"
+DAUTOFS="/network"
 # minimal length of password
 PWDMIN="6"
 # pause for next check
@@ -40,7 +47,7 @@ while true; do
           if [[ ${#PASSWORD} -ge ${PWDMIN} ]];
           then
             # if file with password was not created then do it
-            [[ ! -f ${FSECRET} ]] && touch ${FSECRET} && chmod 0700 ${FSECRET};
+            [[ ! -f ${FSECRET} ]] && touch ${FSECRET} && chmod 0600 ${FSECRET};
             echo -n "* ${PASSWORD}" > ${FSECRET};
             zenity --info --text="Пароль успешно изменен.";
             break;
