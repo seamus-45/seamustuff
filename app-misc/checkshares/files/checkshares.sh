@@ -3,7 +3,7 @@
 # and add bookmarks to .gtk-bookmarks file
 # Shares mounted with automount (autofs daemon)
 # author: sr.fido@gmail.com
-# ver 0.1
+# ver 0.2
 
 # run only one instance (exit - if greater than one)
 if [ $(pidof -x $0 -o $$ | wc -w) -gt 1 ];
