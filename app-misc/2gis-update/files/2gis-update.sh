@@ -1,10 +1,10 @@
 #!/bin/bash
 # Author: sr.fido@gmail.com
 # Thanks http://habrahabr.ru/users/mizrael_666 for idea
-# Distributed under the terms of the GNU General Public License v3
 # 29/04/13 - Fix script for new site structure.
 # 30/04/13 - Better error handling
 # 06/06/13 - Fix script for new site structure.
+# 06/08/13 - Fix script for BOTH versions 2gis site.
 
 SRC="/tmp/2gis-install-${USER}"
 WINEPREFIX="${HOME}/.wine-2gis"
@@ -23,8 +23,8 @@ fi
 
 # get list of towns. user must select links.
 ITEMS=$(wget -O - 'http://2gis.ru/' 2>/dev/null |\
-grep "list__item" | grep -e "http://.*2gis.ru/" | sed "s@^\s*@@g" |\
-sed "s@.*\"\(http://.*2gis.ru/\)\".*>\(.*\)<\/a.*\$@FALSE\n\2\n\1how-get\/linux\/@g" | uniq |\
+grep -e "list__item\|choose_city" | grep -e "http://.*2gis.ru" | sed "s@^\s*@@g" |\
+sed "s@.*\"\(http://.*2gis.ru\)\".*>\(.*\)<\/a.*\$@FALSE\n\2\n\1how-get\/linux\/@g" | uniq |\
 zenity --list \
 	--checklist \
 	--height=600 \
