@@ -56,7 +56,7 @@ grep "last\/linux" | sort |\
 sed "s|^.*\(http://.*/last/linux/\).*$|\1|g" | uniq |\
 xargs -I {} sh -c "wget -c --trust-server-names -N -P"${SRC}" {} 2>&1 |\
 	sed -u 's/\ \+[0-9KMB]\+[\ \.]\+\([0-9]\+\)%\ \+[0-9,KMB]\+\ \([0-9hms]\+\)$/\1\n# \1% Осталось: \2/' |\
-	zenity --width=300 --no-cancel --progress --title='Загрузка обновлений...' --auto-close --text=''"
+	zenity --width=300 --progress --title='Загрузка обновлений...' --auto-close --text=''"
 
 # unzip files
 mkdir -p "${PREFIX}"
