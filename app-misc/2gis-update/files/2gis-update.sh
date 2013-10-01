@@ -22,7 +22,7 @@ then
 fi
 
 # get list of towns. user must select links.
-ITEMS=$(wget -O - 'http://2gis.ru/' 2>/dev/null |\
+ITEMS=$(wget -O - 'http://kursk.2gis.ru/' 2>/dev/null |\
 grep -e "list__item\|choose_city" | grep -e "http://.*2gis.ru" | sed "s@^\s*@@g" |\
 sed "s@.*\"\(http://.*2gis.ru\)/\?\".*>\(.*\)<\/a.*\$@FALSE\n\2\n\1/how-get\/linux\/@g" | uniq |\
 zenity --list \
