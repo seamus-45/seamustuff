@@ -25,6 +25,7 @@ REQUIRED_USE="
 "
 
 COMMON_DEPEND="
+	app-crypt/qca
 	>=dev-qt/qtgui-4.5:4
 	dbus? ( >=dev-qt/qtdbus-4.5:4 )
 	>=dev-qt/qtopengl-4.5:4
@@ -116,7 +117,7 @@ src_configure() {
 		-DENABLE_SPOTIFY_BLOB=OFF
 		-DENABLE_SPOTIFY_DOWNLOADER=OFF
 		-DENABLE_BREAKPAD=OFF
-		-DSTATIC_SQLITE=OFF
+		-DSTATIC_SQLITE=ON
 		-DUSE_SYSTEM_GMOCK=ON
 		)
 
