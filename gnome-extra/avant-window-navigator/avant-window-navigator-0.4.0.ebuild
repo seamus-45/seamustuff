@@ -58,7 +58,6 @@ pkg_setup() {
 		$(use_enable gconf schemas-install)
 		$(use_with vala)
 		--with-html-dir=/usr/share/doc/${PF}/html"
-
 	DOCS="AUTHORS ChangeLog NEWS README TODO"
 }
 
@@ -66,7 +65,11 @@ src_prepare() {
 	>py-compile
 
 	gnome2_src_prepare
+
 	use vala && vala_src_prepare
+	
+	find . -name Makefile.in -exec sed -i -e 's@^LDFLAGS.*@LDFLAGS = \@LDFLAGS\@ -L/usr/lib64 -ldesktop-agnostic -lgdk-x11-2.0 -lgobject-2.0 -lgtk-x11-2.0 -lgdk_pixbuf-2.0 -lglib-2.0 -lcairo -ldesktop-agnostic-vfs -ldesktop-agnostic-cfg -ldbus-glib-1@' {} \;
+
 }
 
 pkg_postinst() {
