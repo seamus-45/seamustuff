@@ -1,20 +1,20 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gdm/gdm-2.20.11-r1.ebuild,v 1.9 2012/06/07 22:18:53 zmedico Exp $
+# $Header: $
 
 EAPI="4"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 GNOME_TARBALL_SUFFIX="bz2"
 
-inherit eutils pam gnome2 user git-2
+inherit autotools eutils pam gnome2 user
 
-DESCRIPTION="MDM is a new Display Manager"
+DESCRIPTION="Mint Display Manager"
 HOMEPAGE="https://github.com/linuxmint/mdm"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ia64 ppc ppc64 sh sparc x86 ~x86-fbsd"
+KEYWORDS="amd64 x86"
 
 IUSE_LIBC="elibc_glibc"
 IUSE="accessibility afs branding +consolekit dmx ipv6 gnome-keyring pam remote selinux tcpd xinerama $IUSE_LIBC"
@@ -22,12 +22,12 @@ IUSE="accessibility afs branding +consolekit dmx ipv6 gnome-keyring pam remote s
 # Name of the tarball with gentoo specific files
 GDM_EXTRA="gdm-2.20.9-gentoo-files-r1"
 
-SRC_URI="mirror://gentoo/${GDM_EXTRA}.tar.bz2
+SRC_URI="https://github.com/linuxmint/mdm/archive/${PV}.tar.gz
+	mirror://gentoo/${GDM_EXTRA}.tar.bz2
 	branding? ( mirror://gentoo/gentoo-gdm-theme-r3.tar.bz2 )"
-	
-EGIT_REPO_URI="git://github.com/linuxmint/mdm.git"
 
-RDEPEND=">=dev-libs/glib-2.12:2
+RDEPEND="!=gnome-base/gdm-2*
+	>=dev-libs/glib-2.12:2
 	>=x11-libs/gtk+-2.6:2
 	>=x11-libs/pango-1.3
 	>=gnome-base/libglade-2:2.0
@@ -35,13 +35,13 @@ RDEPEND=">=dev-libs/glib-2.12:2
 	>=gnome-base/librsvg-1.1.1:2
 	>=dev-libs/libxml2-2.4.12:2
 	>=media-libs/libart_lgpl-2.3.11
+	net-libs/webkit-gtk:2
 	x11-libs/gksu
 	x11-libs/libXi
 	x11-libs/libXau
 	x11-libs/libX11
 	x11-libs/libXext
 	x11-apps/sessreg
-	x11-libs/libXdmcp
 	xinerama? ( x11-libs/libXinerama )
 	consolekit? (
 		sys-auth/consolekit
@@ -73,7 +73,6 @@ pkg_setup() {
 		--with-prefetch
 		--sysconfdir=/etc/X11
 		--localstatedir=/var
-		--with-xdmcp=yes
 		--with-pam-prefix=/etc
 		--disable-static
 		SOUND_PROGRAM=/usr/bin/mdmplay
@@ -102,6 +101,10 @@ pkg_setup() {
 }
 
 src_prepare() {
+	if [[ ! -e configure ]] ; then
+		./autogen.sh || die "autogen failed"
+	fi
+
 	gnome2_src_prepare
 
 	# remove unneeded linker directive for selinux (#41022)
@@ -109,9 +112,6 @@ src_prepare() {
 
 	# Add gksu to mdmsetup menu entry
 	#epatch "${FILESDIR}/${PN}-2.20.2-gksu.patch"
-
-	# Fix parallel install, bug #217037
-	epatch "${FILESDIR}/${PN}-2.20.9-parallel-make.patch"
 
 	# Make custom session work, bug #216984
 	epatch "${FILESDIR}/${PN}-2.20.10-custom-session.patch"
@@ -131,7 +131,7 @@ src_prepare() {
 	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
 		|| die "sed failed"
 		
-	# Fix gdm to mdm
+	# Rename gdm to mdm in old GDM Gentoo specific tarball
 	local gentoodir="${WORKDIR}/${GDM_EXTRA}"
 	cd "${gentoodir}"
 	sed -i -e 's/gdm/mdm/g' -e 's/GDM/MDM/g' -e 's/Gdm/Mdm/g' Xsession || die "sed failed"
