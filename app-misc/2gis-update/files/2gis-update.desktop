@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Update 2Gis
-Name[ru_RU]=Обновление ДубльГис
-Comment=Geographic information system
-Comment[ru_RU]=Система географического информирования
-Exec=2gis-update.sh
-Icon=2gis
-Type=Application
-Categories=GTK;Office;

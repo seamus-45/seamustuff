@@ -1,4 +1,0 @@
-# Calculate format=patch
-<reg>\S+.*popup_menu_key.*</reg>
-<text></text>
-

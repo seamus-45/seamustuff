@@ -1,3 +1,0 @@
-# Calculate format=kde path=/usr/share/icons/elementary-xfce
-[Icon Theme]
-Inherits=Calculate,Tango,gnome,hicolor

@@ -1,6 +1,0 @@
-#required by app-emulation/winetricks (argument)
-=app-emulation/winetricks-922 ~x86
-#required by teamviewer (argument)
-=net-misc/teamviewer-7.0.9377 ~x86
-#required by =x11-plugins/mrim-prpl-0.1.28-r1 (argument)
-=x11-plugins/mrim-prpl-0.1.28-r1 ~x86

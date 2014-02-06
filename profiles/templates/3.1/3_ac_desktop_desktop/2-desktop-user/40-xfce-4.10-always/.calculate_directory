@@ -1,1 +1,0 @@
-# Calculate append=skip belong(xfdesktop)!=&&ini(domain)!=#-env(client.os_remote_auth)-#&&pkg(xfce-base/xfdesktop)>=4.10||belong(xfdesktop)!=&&ini(xsession)!=#-cl_desktop_xsession-#&&pkg(xfce-base/xfdesktop)>=4.10

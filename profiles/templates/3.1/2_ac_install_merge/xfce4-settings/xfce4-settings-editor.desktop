@@ -1,5 +1,0 @@
-# Calculate format=kde belong()!=&&pkg(xfce-base/xfce4-settings)!= path=/usr/share/applications
-[Desktop Entry]
-Categories=XFCE;GTK;Settings;DesktopSettings;
-Hidden=true
-
