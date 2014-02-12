@@ -53,3 +53,9 @@ src_install() {
 	done
 }
 
+pkg_postinst() {
+	ebegin "Recompiling glib schemas"
+	  glib-compile-schemas /usr/share/glib-2.0/schemas/
+	eend $?
+}
+
