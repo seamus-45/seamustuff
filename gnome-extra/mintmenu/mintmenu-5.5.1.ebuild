@@ -30,8 +30,7 @@ RDEPEND=">=dev-lang/python-2.4.6
 	mate-base/mate-panel
 	dev-python/python-xlib"
 
-DEPEND="${RDEPEND}
-	sys-apps/sed"
+DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"
 
