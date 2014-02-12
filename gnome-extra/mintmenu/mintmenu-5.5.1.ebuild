@@ -27,6 +27,7 @@ RDEPEND=">=dev-lang/python-2.4.6
 	<dev-lang/python-3.1.1-r1
 	dev-python/pygtk
 	dev-python/pyxdg
+	mate-base/mate-panel
 	dev-python/python-xlib"
 
 DEPEND="${RDEPEND}
