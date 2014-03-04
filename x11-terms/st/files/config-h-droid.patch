@@ -1,0 +1,13 @@
+diff --git a/config.h b/config.h
+index 8cb8804..b1be9e2 100644
+--- a/config.h
++++ b/config.h
+@@ -5,7 +5,7 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char font[] = "Liberation Mono:pixelsize=12:antialias=false:autohint=false";
++static char font[] = "Droid Sans Mono Slashed:pixelsize=13:antialias=true:autohint=true";
+ static int borderpx = 2;
+ static char shell[] = "/bin/sh";
+ 

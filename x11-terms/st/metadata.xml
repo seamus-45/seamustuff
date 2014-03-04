@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer>
+<email>sr.fido@gmail.com</email>
+<name>Serge Fedotov</name>
+</maintainer>
+  <use>
+	<flag name="droid">Use Droid Sans Mono Slashed font by default</flag>
+	<flag name="solarized_light">Use a light theme by default</flag>
+	<flag name="solarized_dark">Use a dark theme by default</flag>
+  </use>
+</pkgmetadata>
