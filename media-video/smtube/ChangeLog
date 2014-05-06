@@ -1,0 +1,4 @@
+*smtube-1.8 (10 Sep 2013)
+
+  10 Sep 2013;  <hash@gentoo.org> +metadata.xml, +smtube-1.8.ebuild:
+  add media-video/smtube
