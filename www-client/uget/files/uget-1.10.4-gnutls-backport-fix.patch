@@ -1,0 +1,1240 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- ViewVC :: http://www.viewvc.org/ -->
+<head>
+<title>[gentoo-x86] Contents of /www-client/uget/files/uget-1.10.4-gnutls-backport-fix.patch</title>
+<meta name="generator" content="ViewVC 1.1.20" />
+<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="/static/styles.css" type="text/css" />
+
+</head>
+<body>
+<div class="vc_navheader">
+<table><tr>
+<td><strong><a href="/cgi-bin/viewvc.cgi"><span class="pathdiv">/</span></a><a href="/cgi-bin/viewvc.cgi/gentoo-x86/">[gentoo-x86]</a><span class="pathdiv">/</span><a href="/cgi-bin/viewvc.cgi/gentoo-x86/www-client/">www-client</a><span class="pathdiv">/</span><a href="/cgi-bin/viewvc.cgi/gentoo-x86/www-client/uget/">uget</a><span class="pathdiv">/</span><a href="/cgi-bin/viewvc.cgi/gentoo-x86/www-client/uget/files/">files</a><span class="pathdiv">/</span><a href="/cgi-bin/viewvc.cgi/gentoo-x86/www-client/uget/files/uget-1.10.4-gnutls-backport-fix.patch?view=log">uget-1.10.4-gnutls-backport-fix.patch</a></strong></td>
+<td style="text-align: right;">
+</td>
+</tr></table>
+</form>
+</div>
+<div style="float: right; padding: 5px;"><a href="http://www.gentoo.org/" title="Gentoo Linux"><img src="/static/images/gentoo-new.gif" alt="Gentoo" width="182" height="59" /></a></div>
+<h1>Contents of /www-client/uget/files/uget-1.10.4-gnutls-backport-fix.patch</h1>
+
+<p style="margin:0;">
+
+<a href="/cgi-bin/viewvc.cgi/gentoo-x86/www-client/uget/files/"><img src="/static/images/back_small.png" class="vc_icon" alt="Parent Directory" /> Parent Directory</a>
+
+| <a href="/cgi-bin/viewvc.cgi/gentoo-x86/www-client/uget/files/uget-1.10.4-gnutls-backport-fix.patch?view=log"><img src="/static/images/log.png" class="vc_icon" alt="Revision Log" /> Revision Log</a>
+
+
+
+
+</p>
+
+<hr />
+<div class="vc_summary">
+Revision <strong>1.1</strong> -
+(<a href="/cgi-bin/viewvc.cgi/gentoo-x86/www-client/uget/files/uget-1.10.4-gnutls-backport-fix.patch?annotate=1.1"><strong>show annotations</strong></a>)
+(<a href="/cgi-bin/viewvc.cgi/gentoo-x86/www-client/uget/files/uget-1.10.4-gnutls-backport-fix.patch?revision=1.1"><strong>download</strong></a>)
+
+
+<br /><em>Thu May  8 03:05:14 2014 UTC</em>
+(76 minutes, 48 seconds ago)
+by <em>wired</em>
+
+
+<br />Branch: <strong>MAIN</strong>
+
+
+<br />CVS Tags: <strong>HEAD</strong>
+
+
+
+
+
+
+
+
+
+
+
+
+<pre class="vc_log">version bump (bug #500816). backported gnutls fix. proper LINGUAS support (bug #509760). live ebuild update.
+
+(Portage version: 2.2.10/cvs/Linux x86_64, signed Manifest commit with key EB9B4AFA)
+
+</pre>
+
+</div>
+
+
+
+
+
+
+<div id="vc_file">
+<table cellspacing="0" cellpadding="0">
+
+
+
+
+
+
+
+
+<tr class="vc_row_odd" id="l1">
+<td class="vc_file_line_number">1</td>
+
+<td class="vc_file_line_text">diff -u -ru uget-1.10.4-orig/configure.ac uget-1.10.4/configure.ac</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l2">
+<td class="vc_file_line_number">2</td>
+
+<td class="vc_file_line_text">--- uget-1.10.4-orig/configure.ac       2014-05-08 05:48:17.316939998 +0300</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l3">
+<td class="vc_file_line_number">3</td>
+
+<td class="vc_file_line_text">+++ uget-1.10.4/configure.ac    2014-05-08 05:48:34.668232311 +0300</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l4">
+<td class="vc_file_line_number">4</td>
+
+<td class="vc_file_line_text">@@ -145,23 +145,45 @@</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l5">
+<td class="vc_file_line_number">5</td>
+
+<td class="vc_file_line_text"> )</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l6">
+<td class="vc_file_line_number">6</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l7">
+<td class="vc_file_line_number">7</td>
+
+<td class="vc_file_line_text"> if test &quot;x$plugin_curl&quot; = &quot;xyes&quot;; then</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l8">
+<td class="vc_file_line_number">8</td>
+
+<td class="vc_file_line_text">-    AC_DEFINE(HAVE_PLUGIN_CURL, 1, [Define to 1 to enable cURL plug-in.])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l9">
+<td class="vc_file_line_number">9</td>
+
+<td class="vc_file_line_text">+       AC_DEFINE(HAVE_PLUGIN_CURL, 1, [Define to 1 to enable cURL plug-in.])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l10">
+<td class="vc_file_line_number">10</td>
+
+<td class="vc_file_line_text"> fi</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l11">
+<td class="vc_file_line_number">11</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l12">
+<td class="vc_file_line_number">12</td>
+
+<td class="vc_file_line_text"> ## ----------------</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l13">
+<td class="vc_file_line_number">13</td>
+
+<td class="vc_file_line_text"> ## GnuTLS</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l14">
+<td class="vc_file_line_number">14</td>
+
+<td class="vc_file_line_text">-AC_ARG_ENABLE(</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l15">
+<td class="vc_file_line_number">15</td>
+
+<td class="vc_file_line_text">+AC_ARG_WITH(</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l16">
+<td class="vc_file_line_number">16</td>
+
+<td class="vc_file_line_text">        [gnutls],</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l17">
+<td class="vc_file_line_number">17</td>
+
+<td class="vc_file_line_text">-       AC_HELP_STRING([--enable-gnutls], [Enable GnuTLS support.]),</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l18">
+<td class="vc_file_line_number">18</td>
+
+<td class="vc_file_line_text">-       [enable_gnutls=&quot;$enableval&quot;],</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l19">
+<td class="vc_file_line_number">19</td>
+
+<td class="vc_file_line_text">-       [enable_gnutls=&quot;no&quot;]</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l20">
+<td class="vc_file_line_number">20</td>
+
+<td class="vc_file_line_text">+       AC_HELP_STRING([--with-gnutls[=@&lt;:@no/auto/yes@:&gt;@]], [Enable GnuTLS support.]),</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l21">
+<td class="vc_file_line_number">21</td>
+
+<td class="vc_file_line_text">+       [with_gnutls=&quot;$withval&quot;],</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l22">
+<td class="vc_file_line_number">22</td>
+
+<td class="vc_file_line_text">+       [with_gnutls=&quot;auto&quot;]</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l23">
+<td class="vc_file_line_number">23</td>
+
+<td class="vc_file_line_text"> )</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l24">
+<td class="vc_file_line_number">24</td>
+
+<td class="vc_file_line_text">-if test &quot;x$enable_gnutls&quot; = &quot;xyes&quot;; then</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l25">
+<td class="vc_file_line_number">25</td>
+
+<td class="vc_file_line_text">-  PKG_CHECK_MODULES(GNUTLS, gnutls)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l26">
+<td class="vc_file_line_number">26</td>
+
+<td class="vc_file_line_text">-  AC_DEFINE(HAVE_GNUTLS, 1, [Define to 1 if gnutls support is required.])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l27">
+<td class="vc_file_line_number">27</td>
+
+<td class="vc_file_line_text">-  # for ArchLinux</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l28">
+<td class="vc_file_line_number">28</td>
+
+<td class="vc_file_line_text">-  AC_SUBST(GNUTLS_CFLAGS)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l29">
+<td class="vc_file_line_number">29</td>
+
+<td class="vc_file_line_text">-  AC_SUBST(GNUTLS_LIBS)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l30">
+<td class="vc_file_line_number">30</td>
+
+<td class="vc_file_line_text">+if test &quot;x$with_gnutls&quot; != &quot;xno&quot;; then</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l31">
+<td class="vc_file_line_number">31</td>
+
+<td class="vc_file_line_text">+#      AC_CHECK_HEADER(gcrypt.h, [USE_GNUTLS_GCRYPT=1], [USE_GNUTLS_GCRYPT=0])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l32">
+<td class="vc_file_line_number">32</td>
+
+<td class="vc_file_line_text">+#      if test &quot;$USE_GNUTLS_GCRYPT&quot; = &quot;1&quot;; then</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l33">
+<td class="vc_file_line_number">33</td>
+
+<td class="vc_file_line_text">+#              LIBGCRYPT_CFLAGS=&quot;&quot;</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l34">
+<td class="vc_file_line_number">34</td>
+
+<td class="vc_file_line_text">+#              AC_SUBST(LIBGCRYPT_CFLAGS)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l35">
+<td class="vc_file_line_number">35</td>
+
+<td class="vc_file_line_text">+#      fi</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l36">
+<td class="vc_file_line_number">36</td>
+
+<td class="vc_file_line_text">+#      AC_CHECK_HEADER(gcrypt/gcrypt.h, [USE_GNUTLS_GCRYPT=1], [USE_GNUTLS_GCRYPT=0])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l37">
+<td class="vc_file_line_number">37</td>
+
+<td class="vc_file_line_text">+#      if test &quot;$USE_GNUTLS_GCRYPT&quot; = &quot;1&quot;; then</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l38">
+<td class="vc_file_line_number">38</td>
+
+<td class="vc_file_line_text">+#              LIBGCRYPT_CFLAGS=&quot;&quot;</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l39">
+<td class="vc_file_line_number">39</td>
+
+<td class="vc_file_line_text">+#              AC_SUBST(LIBGCRYPT_CFLAGS, [&quot;&quot;])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l40">
+<td class="vc_file_line_number">40</td>
+
+<td class="vc_file_line_text">+#      fi</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l41">
+<td class="vc_file_line_number">41</td>
+
+<td class="vc_file_line_text">+#      AC_CHECK_LIB(gcrypt, gcry_control, [USE_GNUTLS_GCRYPT=1], [USE_GNUTLS_GCRYPT=0])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l42">
+<td class="vc_file_line_number">42</td>
+
+<td class="vc_file_line_text">+#      if test &quot;$USE_GNUTLS_GCRYPT&quot; = &quot;1&quot;; then</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l43">
+<td class="vc_file_line_number">43</td>
+
+<td class="vc_file_line_text">+#              LIBGCRYPT_LIBS=&quot;-lgcrypt&quot;</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l44">
+<td class="vc_file_line_number">44</td>
+
+<td class="vc_file_line_text">+#              AC_SUBST(LIBGCRYPT_LIBS, [&quot;-lgcrypt&quot;])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l45">
+<td class="vc_file_line_number">45</td>
+
+<td class="vc_file_line_text">+#      fi</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l46">
+<td class="vc_file_line_number">46</td>
+
+<td class="vc_file_line_text">+       AC_PATH_PROG(LIBGCRYPT_CONFIG, libgcrypt-config)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l47">
+<td class="vc_file_line_number">47</td>
+
+<td class="vc_file_line_text">+       if test &quot;x$LIBGCRYPT_CONFIG&quot; = &quot;x&quot; ; then</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l48">
+<td class="vc_file_line_number">48</td>
+
+<td class="vc_file_line_text">+               if test &quot;x$with_gnutls&quot; = &quot;xyes&quot;; then</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l49">
+<td class="vc_file_line_number">49</td>
+
+<td class="vc_file_line_text">+                       AC_MSG_ERROR(Unable to find libgcrypt-config, please install libgcrypt)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l50">
+<td class="vc_file_line_number">50</td>
+
+<td class="vc_file_line_text">+               fi</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l51">
+<td class="vc_file_line_number">51</td>
+
+<td class="vc_file_line_text">+       else</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l52">
+<td class="vc_file_line_number">52</td>
+
+<td class="vc_file_line_text">+               LIBGCRYPT_CFLAGS=`$LIBGCRYPT_CONFIG --cflags`</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l53">
+<td class="vc_file_line_number">53</td>
+
+<td class="vc_file_line_text">+               LIBGCRYPT_LIBS=`$LIBGCRYPT_CONFIG --libs`</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l54">
+<td class="vc_file_line_number">54</td>
+
+<td class="vc_file_line_text">+               AC_SUBST(LIBGCRYPT_CFLAGS)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l55">
+<td class="vc_file_line_number">55</td>
+
+<td class="vc_file_line_text">+               AC_SUBST(LIBGCRYPT_LIBS)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l56">
+<td class="vc_file_line_number">56</td>
+
+<td class="vc_file_line_text">+               AC_DEFINE(USE_GNUTLS, 1, [Define to 1 if gnutls support is required.])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l57">
+<td class="vc_file_line_number">57</td>
+
+<td class="vc_file_line_text">+       fi</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l58">
+<td class="vc_file_line_number">58</td>
+
+<td class="vc_file_line_text"> fi</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l59">
+<td class="vc_file_line_number">59</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l60">
+<td class="vc_file_line_number">60</td>
+
+<td class="vc_file_line_text"> ## -----------------</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l61">
+<td class="vc_file_line_number">61</td>
+
+<td class="vc_file_line_text">@@ -188,7 +210,7 @@</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l62">
+<td class="vc_file_line_number">62</td>
+
+<td class="vc_file_line_text">   PKG_CHECK_MODULES(LIBPWMD, [libpwmd-7.0 &gt;= 7.0.0])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l63">
+<td class="vc_file_line_number">63</td>
+
+<td class="vc_file_line_text">   AC_DEFINE(HAVE_LIBPWMD, 1, [Define to 1 if libpwmd support is required.])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l64">
+<td class="vc_file_line_number">64</td>
+
+<td class="vc_file_line_text"> fi</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l65">
+<td class="vc_file_line_number">65</td>
+
+<td class="vc_file_line_text">-AM_CONDITIONAL([WITH_LIBPWMD],  [test &quot;x$enable_pwmd&quot; = &quot;xyes&quot;])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l66">
+<td class="vc_file_line_number">66</td>
+
+<td class="vc_file_line_text">+AM_CONDITIONAL([WITH_LIBPWMD],  [test &quot;x$enable_pwmd&quot; = &quot;xyes&quot;])</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l67">
+<td class="vc_file_line_number">67</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l68">
+<td class="vc_file_line_number">68</td>
+
+<td class="vc_file_line_text"> ## -----------------</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l69">
+<td class="vc_file_line_number">69</td>
+
+<td class="vc_file_line_text"> ## HIDE_TEMPORARY_FILE</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l70">
+<td class="vc_file_line_number">70</td>
+
+<td class="vc_file_line_text">diff -u -ru uget-1.10.4-orig/uget-gtk/Makefile.am uget-1.10.4/uget-gtk/Makefile.am</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l71">
+<td class="vc_file_line_number">71</td>
+
+<td class="vc_file_line_text">--- uget-1.10.4-orig/uget-gtk/Makefile.am       2014-05-08 05:48:17.341936098 +0300</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l72">
+<td class="vc_file_line_number">72</td>
+
+<td class="vc_file_line_text">+++ uget-1.10.4/uget-gtk/Makefile.am    2014-05-08 05:48:34.668232311 +0300</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l73">
+<td class="vc_file_line_number">73</td>
+
+<td class="vc_file_line_text">@@ -1,10 +1,14 @@</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l74">
+<td class="vc_file_line_number">74</td>
+
+<td class="vc_file_line_text"> bin_PROGRAMS = uget-gtk</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l75">
+<td class="vc_file_line_number">75</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l76">
+<td class="vc_file_line_number">76</td>
+
+<td class="vc_file_line_text">-UGET_GTK_LIBS   = @GTK_LIBS@   @GIO_LIBS@   @GTHREAD_LIBS@   @CURL_LIBS@   @GNUTLS_LIBS@   @LIBNOTIFY_LIBS@   @APP_INDICATOR_LIBS@   @GSTREAMER_LIBS@   @LIBPWMD_LIBS@</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l77">
+<td class="vc_file_line_number">77</td>
+
+<td class="vc_file_line_text">+UGET_GTK_LIBS   = @GTK_LIBS@  @GIO_LIBS@  @GTHREAD_LIBS@  \</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l78">
+<td class="vc_file_line_number">78</td>
+
+<td class="vc_file_line_text">+       @CURL_LIBS@  @LIBGCRYPT_LIBS@  \</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l79">
+<td class="vc_file_line_number">79</td>
+
+<td class="vc_file_line_text">+       @LIBNOTIFY_LIBS@  @APP_INDICATOR_LIBS@  @GSTREAMER_LIBS@  @LIBPWMD_LIBS@</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l80">
+<td class="vc_file_line_number">80</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l81">
+<td class="vc_file_line_number">81</td>
+
+<td class="vc_file_line_text"> # set the include path found by configure</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l82">
+<td class="vc_file_line_number">82</td>
+
+<td class="vc_file_line_text"> uget_gtk_CPPFLAGS = -DDATADIR='&quot;$(datadir)&quot;' -I$(top_srcdir)/uglib -I$(top_srcdir)/uget-gtk</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l83">
+<td class="vc_file_line_number">83</td>
+
+<td class="vc_file_line_text">-uget_gtk_CFLAGS   = @LFS_CFLAGS@  @GTK_CFLAGS@ @GIO_CFLAGS@ @GTHREAD_CFLAGS@ @CURL_CFLAGS@ @GNUTLS_CFLAGS@ @LIBNOTIFY_CFLAGS@ @APP_INDICATOR_CFLAGS@ @GSTREAMER_CFLAGS@ @LIBPWMD_CFLAGS@</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l84">
+<td class="vc_file_line_number">84</td>
+
+<td class="vc_file_line_text">+uget_gtk_CFLAGS   = @LFS_CFLAGS@  @GTK_CFLAGS@ @GIO_CFLAGS@ @GTHREAD_CFLAGS@  \</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l85">
+<td class="vc_file_line_number">85</td>
+
+<td class="vc_file_line_text">+       @CURL_CFLAGS@ @LIBGCRYPT_CFLAGS@  \</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l86">
+<td class="vc_file_line_number">86</td>
+
+<td class="vc_file_line_text">+       @LIBNOTIFY_CFLAGS@ @APP_INDICATOR_CFLAGS@ @GSTREAMER_CFLAGS@ @LIBPWMD_CFLAGS@</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l87">
+<td class="vc_file_line_number">87</td>
+
+<td class="vc_file_line_text"> uget_gtk_LDFLAGS  = @LFS_LDFLAGS@</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l88">
+<td class="vc_file_line_number">88</td>
+
+<td class="vc_file_line_text"> uget_gtk_LDADD    = $(top_builddir)/uglib/libuglib.a $(UGET_GTK_LIBS)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l89">
+<td class="vc_file_line_number">89</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l90">
+<td class="vc_file_line_number">90</td>
+
+<td class="vc_file_line_text">diff -u -ru uget-1.10.4-orig/uget-gtk/UgApp-gtk-main.c uget-1.10.4/uget-gtk/UgApp-gtk-main.c</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l91">
+<td class="vc_file_line_number">91</td>
+
+<td class="vc_file_line_text">--- uget-1.10.4-orig/uget-gtk/UgApp-gtk-main.c  2014-05-08 05:48:17.341936098 +0300</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l92">
+<td class="vc_file_line_number">92</td>
+
+<td class="vc_file_line_text">+++ uget-1.10.4/uget-gtk/UgApp-gtk-main.c       2014-05-08 05:48:43.267889859 +0300</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l93">
+<td class="vc_file_line_number">93</td>
+
+<td class="vc_file_line_text">@@ -113,17 +113,17 @@</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l94">
+<td class="vc_file_line_number">94</td>
+
+<td class="vc_file_line_text"> #include &lt;UgApp-gtk.h&gt;</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l95">
+<td class="vc_file_line_number">95</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l96">
+<td class="vc_file_line_number">96</td>
+
+<td class="vc_file_line_text"> // GnuTLS</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l97">
+<td class="vc_file_line_number">97</td>
+
+<td class="vc_file_line_text">-#ifdef HAVE_GNUTLS</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l98">
+<td class="vc_file_line_number">98</td>
+
+<td class="vc_file_line_text">+#ifdef USE_GNUTLS</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l99">
+<td class="vc_file_line_number">99</td>
+
+<td class="vc_file_line_text"> #include &lt;gcrypt.h&gt;</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l100">
+<td class="vc_file_line_number">100</td>
+
+<td class="vc_file_line_text"> #include &lt;errno.h&gt;</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l101">
+<td class="vc_file_line_number">101</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l102">
+<td class="vc_file_line_number">102</td>
+
+<td class="vc_file_line_text"> GCRY_THREAD_OPTION_PTHREAD_IMPL;</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l103">
+<td class="vc_file_line_number">103</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l104">
+<td class="vc_file_line_number">104</td>
+
+<td class="vc_file_line_text">-void init_gnutls_locks (void)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l105">
+<td class="vc_file_line_number">105</td>
+
+<td class="vc_file_line_text">+void init_locks (void)</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l106">
+<td class="vc_file_line_number">106</td>
+
+<td class="vc_file_line_text"> {</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l107">
+<td class="vc_file_line_number">107</td>
+
+<td class="vc_file_line_text">-       gcry_control (GCRYCTL_SET_THREAD_CBS);</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l108">
+<td class="vc_file_line_number">108</td>
+
+<td class="vc_file_line_text">+       gcry_control (GCRYCTL_SET_THREAD_CBS, &amp;gcry_threads_pthread);</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l109">
+<td class="vc_file_line_number">109</td>
+
+<td class="vc_file_line_text"> }</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l110">
+<td class="vc_file_line_number">110</td>
+
+<td class="vc_file_line_text">-#endif // HAVE_GNUTLS</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l111">
+<td class="vc_file_line_number">111</td>
+
+<td class="vc_file_line_text">+#endif // USE_GNUTLS</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l112">
+<td class="vc_file_line_number">112</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l113">
+<td class="vc_file_line_number">113</td>
+
+<td class="vc_file_line_text"> // GStreamer</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l114">
+<td class="vc_file_line_number">114</td>
+
+<td class="vc_file_line_text"> #ifdef HAVE_GSTREAMER</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l115">
+<td class="vc_file_line_number">115</td>
+
+<td class="vc_file_line_text">@@ -199,8 +199,8 @@</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l116">
+<td class="vc_file_line_number">116</td>
+
+<td class="vc_file_line_text">        bind_textdomain_codeset (GETTEXT_PACKAGE, &quot;UTF-8&quot;);</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l117">
+<td class="vc_file_line_number">117</td>
+
+<td class="vc_file_line_text">        textdomain (GETTEXT_PACKAGE);</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l118">
+<td class="vc_file_line_number">118</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l119">
+<td class="vc_file_line_number">119</td>
+
+<td class="vc_file_line_text">-#ifdef HAVE_GNUTLS</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l120">
+<td class="vc_file_line_number">120</td>
+
+<td class="vc_file_line_text">-       init_gnutls_locks ();</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l121">
+<td class="vc_file_line_number">121</td>
+
+<td class="vc_file_line_text">+#ifdef USE_GNUTLS</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l122">
+<td class="vc_file_line_number">122</td>
+
+<td class="vc_file_line_text">+       init_locks ();</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l123">
+<td class="vc_file_line_number">123</td>
+
+<td class="vc_file_line_text"> #endif</td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l124">
+<td class="vc_file_line_number">124</td>
+
+<td class="vc_file_line_text"> </td>
+</tr>
+
+
+
+
+<tr class="vc_row_odd" id="l125">
+<td class="vc_file_line_number">125</td>
+
+<td class="vc_file_line_text">        string = ug_arg_find_version (argc, argv);</td>
+</tr>
+
+
+</table>
+</div>
+
+
+
+
+
+<hr />
+<table>
+<tr>
+<td>&nbsp;</td>
+<td style="text-align: right;"><strong><a href="/static/help_rootview.html">ViewVC Help</a></strong></td>
+</tr>
+<tr>
+<td>Powered by <a href="http://viewvc.tigris.org/">ViewVC 1.1.20</a></td>
+<td style="text-align: right;">&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>
+
