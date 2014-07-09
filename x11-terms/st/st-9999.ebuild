@@ -29,16 +29,6 @@ DEPEND="${RDEPEND}
 	x11-proto/xproto"
 
 src_prepare() {
-	sed -e '/^CFLAGS/s:[[:space:]]-Wall[[:space:]]: :' \
-		-e '/^CFLAGS/s:[[:space:]]-O[^[:space:]]*[[:space:]]: :' \
-		-e '/^LDFLAGS/{s:[[:space:]]-s[[:space:]]: :}' \
-		-e '/^X11INC/{s:/usr/X11R6/include:/usr/include/X11:}' \
-		-e "/^X11LIB/{s:/usr/X11R6/lib:/usr/$(get_libdir)/X11:}" \
-		-i config.mk || die
-	sed -e '/@echo/!s:@::' \
-		-i Makefile || die
-	tc-export CC
-
 	cp ${S}/config.def.h ${S}/config.h
 	if use solarized_light; then
 		epatch "${FILESDIR}"/config-h-solarized_light.patch
