@@ -16,7 +16,7 @@ REQUIRED_USE="
 solarized_dark? ( !solarized_light )
 savedconfig? ( !solarized_light !solarized_dark !droid )
 "
-IUSE="savedconfig +solarized_dark solarized_light +droid"
+IUSE="savedconfig solarized_dark solarized_light +droid nobold"
 
 RDEPEND="media-libs/fontconfig
 	x11-libs/libX11
@@ -38,7 +38,9 @@ src_prepare() {
 	if use droid; then
 		epatch "${FILESDIR}"/config-h-droid.patch
 	fi
-	epatch "${FILESDIR}"/c-no_bold_colors.patch
+	if use nobold; then
+		epatch "${FILESDIR}"/c-no_bold_colors.patch
+	fi
 	restore_config config.h
 }
 
