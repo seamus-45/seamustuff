@@ -7,7 +7,7 @@ inherit gnome2-utils fdo-mime user eutils
 
 DESCRIPTION="Proprietary freeware multimedia map of several Russian and Ukrainian towns"
 HOMEPAGE="http://2gis.ru"
-SRC_URI="http://deb.2gis.ru/pool/non-free/2/2gis/${PN}_${PV}-0trusty1%2bshv121%2br169_amd64.deb -> ${P}.deb"
+SRC_URI="http://deb.2gis.ru/pool/non-free/2/2gis/${PN}_${PV}-0trusty1%2bshv139%2br191_amd64.deb -> ${P}.deb"
 
 SLOT="0"
 KEYWORDS="~amd64"
