@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI="5"
-inherit gnome2-utils fdo-mime user eutils versionator
+inherit gnome2-utils user versionator
 
 DESCRIPTION="Proprietary freeware multimedia map of several Russian and Ukrainian towns"
 HOMEPAGE="http://2gis.ru"
@@ -36,12 +36,11 @@ pkg_setup(){
 
 src_install(){
 	rm -rvf ${S}/usr/lib/2GIS/v4/lib/
+	rm -rvf ${S}/var
 	insinto /
 	doins -r ${S}/*
 	fowners root:gis /usr/bin/2gis
-	fperms 2775 /usr/bin/2gis
-	fowners -R root:gis /var/cache/2GIS
-	fperms -R g+ws /var/cache/2GIS
+	fperms 2755 /usr/bin/2gis
 }
 
 pkg_preinst() {
@@ -49,12 +48,17 @@ pkg_preinst() {
 }
 
 pkg_postinst(){
-	fdo-mime_desktop_database_update
+	test -d "${EROOT}var/cache/2GIS" || {
+		mkdir "${EROOT}var/cache/2GIS"
+		use prefix || {
+			chown root:gis "${EROOT}var/cache/2GIS"
+			chmod g+ws "${EROOT}var/cache/2GIS"
+		}
+	}
 	gnome2_icon_cache_update
 }
 
 pkg_postrm(){
-	rm -rvf /var/cache/2GIS
-	fdo-mime_desktop_database_update
+	[ -n "${REPLACED_BY_VERSION}" ] || rm -rf -- "${EROOT}var/cache/2GIS"
 	gnome2_icon_cache_update
 }
