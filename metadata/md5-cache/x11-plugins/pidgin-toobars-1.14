@@ -1,0 +1,10 @@
+DEFINED_PHASES=-
+DESCRIPTION=Add toolbar, status bar, context menu to Pidgin buddy list, hide main menu, change all status by menu (not through Statusbox!) and much more.
+EAPI=4
+HOMEPAGE=http://vayurik.ru/wordpress/toobars
+KEYWORDS=amd64 x86
+LICENSE=GPL-3
+RDEPEND=>=net-im/pidgin-2.8
+SLOT=0
+SRC_URI=http://vayurik.ru/wordpress/wp-content/uploads/toobars/1.14/pidgin-toobars-1.14.tar.gz
+_md5_=2849e01c0f463b453a568dba728c54cf

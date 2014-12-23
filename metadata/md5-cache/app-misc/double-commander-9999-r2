@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install preinst prepare unpack
+DEPEND=>=dev-lang/lazarus-1 sys-apps/dbus dev-libs/glib sys-libs/ncurses x11-libs/libX11 gtk2? ( x11-libs/gtk+:2 ) qt4? ( >=dev-qt/qtpascal-2.5 ) || ( dev-vcs/subversion[http] dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+DESCRIPTION=Cross Platform file manager.
+EAPI=5
+HOMEPAGE=http://doublecmd.sourceforge.net/
+IUSE=qt4 -gtk2
+LICENSE=GPL-2
+RDEPEND=>=dev-lang/lazarus-1 sys-apps/dbus dev-libs/glib sys-libs/ncurses x11-libs/libX11
+REQUIRED_USE=^^ ( qt4 gtk2 )
+SLOT=0
+_eclasses_=eutils	6faef4c127028ccbba3a11400d24ae34	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	subversion	c12bdf4fcc82f86ad89b14c8f76c4026	toolchain-funcs	0dfbfa13f57c6184f4728d12ac002aac
+_md5_=43099617fdb55ac552893937fb6f236b

@@ -1,0 +1,11 @@
+DEFINED_PHASES=install prepare
+DEPEND=media-libs/taglib media-video/ffmpeg sys-libs/zlib >=dev-libs/boost-1.35 virtual/pkgconfig
+DESCRIPTION=Echoprint is an open source music fingerprint and resolving framework powered by the The Echo Nest.
+EAPI=5
+HOMEPAGE=http://echoprint.me/codegen
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+LICENSE=MIT
+RDEPEND=media-libs/taglib media-video/ffmpeg
+SLOT=0
+SRC_URI=https://codeload.github.com/echonest/echoprint-codegen/tar.gz/v4.12 -> echoprint-codegen-4.12.tar.gz
+_md5_=8dcf5055b966c4539c0e14c548eb4ee5
