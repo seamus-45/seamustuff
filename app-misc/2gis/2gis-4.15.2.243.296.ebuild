@@ -12,14 +12,21 @@ SRC_URI="http://deb.2gis.ru/pool/non-free/2/2gis/${MY_P} -> ${P}.deb"
 
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
+IUSE="bundled-libs"
 
 RDEPEND="
->=dev-qt/qtcore-5.2:5
->=dev-qt/qtgui-5.2:5[jpeg,png,opengl,xcb]
->=dev-qt/qtnetwork-5.2:5
->=dev-qt/qtsql-5.2:5
->=dev-qt/qtwebkit-5.2:5[widgets,opengl,printsupport,libxml2]
+!bundled-libs? (
+  >=dev-qt/qtcore-5.2:5
+  >=dev-qt/qtgui-5.2:5[jpeg,png,opengl,xcb]
+  >=dev-qt/qtnetwork-5.2:5
+  >=dev-qt/qtsql-5.2:5
+  >=dev-qt/qtwebkit-5.2:5[widgets,opengl,printsupport,libxml2]
+)
+bundled-libs? (
+  media-libs/libpng:1.2
+  dev-libs/2gis-icu:0/52
+  media-libs/2gis-jpeg
+)
 "
 
 S="${WORKDIR}"
@@ -35,7 +42,9 @@ pkg_setup(){
 }
 
 src_install(){
-	rm -rvf ${S}/usr/lib/2GIS/v4/lib/
+	if not use bundled-libs; then
+		rm -rvf ${S}/usr/lib/2GIS/v4/lib/
+	fi
 	rm -rvf ${S}/var
 	insinto /
 	doins -r ${S}/*
