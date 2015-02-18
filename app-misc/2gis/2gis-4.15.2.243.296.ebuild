@@ -20,7 +20,7 @@ RDEPEND="
   >=dev-qt/qtgui-5.2:5[jpeg,png,opengl,xcb]
   >=dev-qt/qtnetwork-5.2:5
   >=dev-qt/qtsql-5.2:5
-  >=dev-qt/qtwebkit-5.2:5[widgets,opengl,printsupport,libxml2]
+  >=dev-qt/qtwebkit-5.2:5[opengl,printsupport]
 )
 bundled-libs? (
   media-libs/libpng:1.2
@@ -37,12 +37,12 @@ src_unpack() {
 	rm -v control.tar.gz data.tar.xz debian-binary
 }
 
-pkg_setup(){
+pkg_setup() {
 	enewgroup gis
 }
 
-src_install(){
-	if not use bundled-libs; then
+src_install() {
+	if ! use bundled-libs ; then
 		rm -rvf ${S}/usr/lib/2GIS/v4/lib/
 	fi
 	rm -rvf ${S}/var
@@ -56,7 +56,7 @@ pkg_preinst() {
 	gnome2_icon_savelist
 }
 
-pkg_postinst(){
+pkg_postinst() {
 	test -d "${EROOT}var/cache/2GIS" || {
 		mkdir "${EROOT}var/cache/2GIS"
 		use prefix || {
@@ -67,7 +67,7 @@ pkg_postinst(){
 	gnome2_icon_cache_update
 }
 
-pkg_postrm(){
+pkg_postrm() {
 	[ -n "${REPLACED_BY_VERSION}" ] || rm -rf -- "${EROOT}var/cache/2GIS"
 	gnome2_icon_cache_update
 }
