@@ -1,6 +1,0 @@
-# Calculate format=openrc
-
-keymap="#-os_install_locale_keymap-#"
-windowkeys="no"
-extended_keymaps=""
-dumpkeys_charset="#-os_install_locale_dumpkeys-#"

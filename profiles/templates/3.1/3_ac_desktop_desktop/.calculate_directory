@@ -1,1 +1,0 @@
-# Calculate env=desktop path=~ name= chmod=0700 chown=#-main.ur_login-#:#-main.ur_group-# pkg(sys-apps/calculate-desktop)!=&&ac_desktop_desktop==up&&cl_chroot_status==off

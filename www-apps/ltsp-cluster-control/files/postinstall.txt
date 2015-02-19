@@ -1,5 +1,0 @@
-0. Create a new PostgresQL database (ltsp) with user (ltsp) having password (ltspcluster).
-
-1. Edit ${VHOST_ROOT}/${PN}/Admin/util/config.php with the database settings.
-
-2. Go to http://${VHOST_HOSTNAME}/${VHOST_APPDIR}/Admin and fill in some stuff.

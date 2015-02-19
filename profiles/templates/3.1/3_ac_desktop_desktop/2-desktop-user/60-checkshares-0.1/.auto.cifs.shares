@@ -1,4 +1,0 @@
-# This file describe what we do mount via automount (autofs).
-# Format:
-# shares = remotemachine1:remoteresource1, remotemachine2:remoteresource2, etc...
-shares = ts1.taximaxim.local:S, ts1.taximaxim.local:T
