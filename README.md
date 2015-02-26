@@ -1,8 +1,5 @@
-Instructions to use this repository:
+Manual adding with layman:
 ====================================
 
-### Run as root below commands:
-
-1.  emerge layman
-2.  layman -o 'https://raw.github.com/tm-calculate/tm-calculate/master/tm-calculate.xml' -f -k -a tm-calculate
+layman -o 'https://raw.github.com/tm-calculate/seamustuff/master/seamustuff.xml' -f -k -a seamustuff
 

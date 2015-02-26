@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>                                                                                                     
+<repositories version="1.0">
+  <repo priority="50" quality="experimental" status="unofficial">
+    <name>seamustuff</name>
+    <description>Custom Gentoo Overlay</description>
+    <homepage>https://github.com/seamustuff</homepage>
+    <owner>
+      <email>sr.fido@gmail.com</email>
+    </owner>
+    <source type="git">git://github.com/tm-calculate/seamustuff.git</source>
+  </repo>
+</repositories>
