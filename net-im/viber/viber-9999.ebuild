@@ -23,11 +23,9 @@ src_prepare(){
 
 src_install(){
 	doins -r "${S}"/*
-	fperms 777 /usr/share/${PN}
-	fperms 755 /usr/share/${PN}/Viber.sh
-	fperms 755 /usr/share/${PN}/Viber
+	fperms 755 /opt/${PN}/Viber
 }
 
 pkg_prerm(){
-	[[ -e "${ROOT}usr/share/${PN}/launcher.db" ]] && rm -rf "${ROOT}usr/share/${PN}/launcher.db"
+	[[ -e "${ROOT}opt/${PN}/launcher.db" ]] && rm -rf "${ROOT}opt/${PN}/launcher.db"
 }
