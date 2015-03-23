@@ -29,6 +29,10 @@ bundled-libs? (
 )
 "
 
+QA_PREBUILT="
+	usr/lib/2GIS/v4/lib/*
+"
+
 S="${WORKDIR}"
 
 src_unpack() {
