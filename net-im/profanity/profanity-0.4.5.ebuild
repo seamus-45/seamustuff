@@ -11,7 +11,7 @@ HOMEPAGE="http://www.profanity.im"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~amd64 ~x86"
 IUSE="libnotify otr +themes xml xscreensaver"
 
 RDEPEND="dev-libs/glib:2
