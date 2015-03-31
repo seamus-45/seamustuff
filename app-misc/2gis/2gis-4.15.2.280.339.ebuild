@@ -16,9 +16,7 @@ IUSE=""
 
 RDEPEND=""
 
-QA_PREBUILT="
-	usr/lib/2GIS/v4/lib/*
-"
+QA_PREBUILT="*"
 
 S="${WORKDIR}"
 
