@@ -7,9 +7,9 @@ PYTHON_COMPAT=( python2_7 )
 
 inherit bzr distutils-r1
 
-DESCRIPTION="Ambient Noise Player (media files). Coffee shop, Fire, Forest Night, Rain, Sea, Storm, Wind."
+DESCRIPTION="Ambient Noise Player (media files). Brow OSSL, Brow, Pink & White Noises."
 HOMEPAGE="https://launchpad.net/anoise"
-EBZR_REPO_URI="lp:~costales/anoise/media"
+EBZR_REPO_URI="lp:~costales/anoise/community-extension3"
 
 LICENSE="CC-3"
 SLOT="0"
