@@ -20,10 +20,6 @@ DEPEND="dev-qt/qtwebkit:4"
 RDEPEND="${DEPEND}
 	media-video/ffmpeg:0"
 
-PATCHES=(
-	"${FILESDIR}/${P}-obey.patch"
-)
-
 src_install() {
 	dobin ${PN}
 
