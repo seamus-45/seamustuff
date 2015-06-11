@@ -20,27 +20,31 @@ RDEPEND="dev-python/chardet
 dev-python/pygobject
 dev-python/simplejson
 media-libs/mutagen
-media-plugins/gst-plugins-meta:0.10
+media-plugins/gst-plugins-meta:1.0
 sys-devel/gettext
 dev-python/notify-python
 dev-libs/keybinder
-dev-python/gst-python:0.10
-dev-pythoh/bsddb3"
+dev-python/gst-python:1.0
+media-plugins/gst-plugins-soup:1.0"
 DEPEND="${RDEPEND}"
 
 src_prepare() {
 	sed -i 's/\(^Actions=.*\)/\1;/' ${S}/share/applications/foobnix.desktop
+	epatch "${FILESDIR}/${P}-issue-91.patch"
 	distutils-r1_src_prepare
 }
 
 pkg_preinst() {
 	gnome2_icon_savelist
+	distutils-r1_pkg_preinst
 }
 
 pkg_postinst() {
 	gnome2_icon_cache_update
+	distutils-r1_pkg_postinst
 }
 
 pkg_postrm() {
 	gnome2_icon_cache_update
+	distutils-r1_pkg_postrm
 }

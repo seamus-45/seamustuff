@@ -1,0 +1,10 @@
+--- foobnix/util/id3_util.py 11:16:23.944464067 +0500
++++ foobnix/util/id3_util.py 11:16:32.870463868 +0500
+@@ -4,7 +4,6 @@
+ 
+ @author: ivan
+ '''
+-from _bsddb import api
+ import os
+ import logging
+ import urllib
