@@ -19,7 +19,7 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DEPEND="
-	=media-libs/mlt-9999
+	=media-libs/mlt-9999[jack]
 	dev-qt/qtcore:5
 	dev-qt/qtgui:5
 	dev-qt/qtx11extras:5
@@ -37,6 +37,7 @@ DEPEND="
 	media-libs/x264
 	media-libs/libvpx
 	media-sound/lame
+	media-sound/jack-audio-connection-kit
 	media-plugins/frei0r-plugins
 	media-libs/ladspa-sdk
 	"
