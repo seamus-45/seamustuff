@@ -49,7 +49,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-gentoo.patch
+	sed -ie 's@^PREFIX.*@PREFIX = /usr@' config.mk
 	epatch_user
 	restore_config config.h
 	tc-export CC PKG_CONFIG
