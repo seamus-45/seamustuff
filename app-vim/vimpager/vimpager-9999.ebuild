@@ -19,7 +19,7 @@ DEPEND="app-arch/sharutils"
 RDEPEND=""
 
 src_prepare() {
-	epatch "${FILESDIR}"/disable-doc.patch
+	sed -ie 's/all: vimpager docs/all: vimpager/' Makefile
 }
 
 src_install() {
