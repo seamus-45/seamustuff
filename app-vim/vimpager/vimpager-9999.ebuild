@@ -20,6 +20,7 @@ RDEPEND=""
 
 src_prepare() {
 	sed -ie 's/all: vimpager docs/all: vimpager/' Makefile
+	sed -ie 's@^PREFIX=.*@PREFIX=/usr@' Makefile
 }
 
 src_install() {
