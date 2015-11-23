@@ -16,5 +16,5 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="net-misc/youtube-dl[${PYTHON_USEDEP}]"
+RDEPEND=""
 DEPEND="${RDEPEND}"
