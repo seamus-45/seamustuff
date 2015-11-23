@@ -16,5 +16,5 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=""
+RDEPEND="media-sound/mps-youtube"
 DEPEND="${RDEPEND}"
