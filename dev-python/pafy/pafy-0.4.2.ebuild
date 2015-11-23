@@ -16,5 +16,5 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="media-sound/mps-youtube[${PYTHON_USEDEP}]"
+RDEPEND="net-misc/youtube-dl[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}"
