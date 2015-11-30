@@ -18,7 +18,7 @@ solarized_light? ( !solarized_dark !monokai )
 monokai? ( !solarized_light !solarized_dark )
 savedconfig? ( !solarized_light !solarized_dark !droid !monokai )
 "
-IUSE="savedconfig solarized_dark solarized_light +droid nobold +monokai"
+IUSE="savedconfig solarized_dark solarized_light droid nobold monokai"
 
 RDEPEND="
 	media-libs/fontconfig
