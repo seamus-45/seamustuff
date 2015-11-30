@@ -1,0 +1,62 @@
+--- config.h	2015-07-08 01:26:44.000000000 +0500
++++ config.h	2015-11-30 09:40:54.372377841 +0500
+@@ -61,30 +61,29 @@
+ 
+ /* Terminal colors (16 first used in escape sequence) */
+ static const char *colorname[] = {
++	/* solarized dark */
+ 	/* 8 normal colors */
+-	"black",
+-	"red3",
+-	"green3",
+-	"yellow3",
+-	"blue2",
+-	"magenta3",
+-	"cyan3",
+-	"gray90",
++	"#272822",  /*  0: black  */
++	"#f92672",  /*  1: red */
++	"#a6e22e",  /*  2: green */
++	"#f4bf75",  /*  3: yellow */
++	"#0087ff",  /*  4: blue */
++	"#ae81ff",  /*  5: magenta */
++	"#a1efe4",  /*  6: cyan */
++	"#f8f8f2",  /*  7: white */
+ 
+ 	/* 8 bright colors */
+-	"gray50",
+-	"red",
+-	"green",
+-	"yellow",
+-	"#5c5cff",
+-	"magenta",
+-	"cyan",
+-	"white",
+-
+-	[255] = 0,
+-
+-	/* more colors can be added after 255 to use with DefaultXX */
+-	"#cccccc",
++	"#75715e",  /*  8: brblack */
++	"#f92672",  /*  9: brred */
++	"#a6e22e",  /* 10: brgreen  */
++	"#f4bf75",  /* 11: bryellow  */
++	"#66d9ef",  /* 12: brblue  */
++	"#ae81ff",  /* 13: brmagenta  */
++	"#a1efe4",  /* 14: brcyan  */
++	"#f9f8f5",  /* 15: brwhite  */
++	[255]=0,
++	// extra
++	"#cb4b16",  /* 256 */
+ };
+ 
+ 
+@@ -101,7 +100,7 @@
+  * will reverse too. Another logic would only make the simple feature too
+  * complex.
+  */
+-static unsigned int defaultitalic = 11;
++static unsigned int defaultitalic = 7;
+ static unsigned int defaultunderline = 7;
+ 
+ /* Internal mouse shortcuts. */

@@ -13,10 +13,12 @@ LICENSE="MIT-with-advertising"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 REQUIRED_USE="
-solarized_dark? ( !solarized_light )
-savedconfig? ( !solarized_light !solarized_dark !droid )
+solarized_dark? ( !solarized_light !monokai )
+solarized_light? ( !solarized_dark !monokai )
+monokai? ( !solarized_light !solarized_dark )
+savedconfig? ( !solarized_light !solarized_dark !droid !monokai )
 "
-IUSE="savedconfig solarized_dark solarized_light +droid nobold"
+IUSE="savedconfig solarized_dark solarized_light +droid nobold +monokai"
 
 RDEPEND="
 	media-libs/fontconfig
@@ -37,6 +39,8 @@ src_prepare() {
 		epatch "${FILESDIR}"/config-h-solarized_light.patch
 	elif use solarized_dark; then
 		epatch "${FILESDIR}"/config-h-solarized_dark.patch
+	elif use monokai; then
+		epatch "${FILESDIR}"/config-h-monokai.patch
 	fi
 	if use droid; then
 		epatch "${FILESDIR}"/config-h-droid.patch
