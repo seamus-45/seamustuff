@@ -3,15 +3,17 @@
 
 EAPI=5
 
-inherit cmake-utils
+inherit cmake-utils git-2
+
+EGIT_REPO_URI="https://bitbucket.org/gfarniev/litetran.git"
+EGIT_BRANCH="master"
 
 DESCRIPTION="LiteTran is a tiny GUI for text translation."
-HOMEPAGE="https://github.com/flareguner/litetran"
-SRC_URI="https://codeload.github.com/flareguner/${PN}/tar.gz/${PV} -> ${P}.tar.gz"
+HOMEPAGE="http://gfarniev.bitbucket.org/litetran/"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
