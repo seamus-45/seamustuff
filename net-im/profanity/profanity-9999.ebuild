@@ -15,18 +15,21 @@ HOMEPAGE="http://www.profanity.im/"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="libnotify otr +themes xml xscreensaver"
+IUSE="libnotify pgp otr +themes xml xscreensaver +c-plugins python-plugins"
 
 RDEPEND="dev-libs/glib:2
 	>=dev-libs/libstrophe-0.8-r1[xml=]
 	net-misc/curl
 	sys-libs/ncurses
+	pgp? ( app-crypt/gpgme )
 	otr? ( net-libs/libotr )
 	xscreensaver? ( x11-libs/libXScrnSaver )
 	libnotify? ( 
 	  virtual/notification-daemon
 	  x11-libs/libnotify 
-	)"
+	)
+	python-plugins? ( dev-lang/python:2.7 )
+	"
 
 DEPEND="${RDEPEND}"
 
@@ -39,10 +42,13 @@ src_prepare() {
 src_configure() {
 	econf \
 		$(use_enable libnotify notifications) \
+		$(use_enable pgp) \
 		$(use_enable otr) \
 		$(use_with themes) \
-		$(use_with xml libxml2) \
-		$(use_with xscreensaver)
+		$(use_with xscreensaver) \
+		$(use_with c-plugins) \
+		$(use_with python-plugins)
+
 }
 
 pkg_postinst() {
