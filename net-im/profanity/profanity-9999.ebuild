@@ -44,10 +44,10 @@ src_configure() {
 		$(use_enable libnotify notifications) \
 		$(use_enable pgp) \
 		$(use_enable otr) \
+		$(use_enable c-plugins) \
+		$(use_enable python-plugins) \
 		$(use_with themes) \
-		$(use_with xscreensaver) \
-		$(use_with c-plugins) \
-		$(use_with python-plugins)
+		$(use_with xscreensaver)
 
 }
 
