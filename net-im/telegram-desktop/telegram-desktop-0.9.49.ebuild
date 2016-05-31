@@ -25,11 +25,11 @@ KEYWORDS="~amd64 ~x86"
 RDEPEND="
 	dev-libs/icu
 	dev-libs/openssl
+	media-libs/freetype[harfbuzz,png]
 	media-libs/jasper
 	media-libs/libjpeg-turbo
 	media-libs/libmng
-	media-libs/libpng
-	>=media-libs/openal-1.16.0
+	>=media-libs/openal-1.16.0[portaudio]
 	media-libs/opus
 	media-libs/tiff
 	virtual/ffmpeg
@@ -37,7 +37,7 @@ RDEPEND="
 	sys-libs/mtdev
 	sys-libs/zlib
 	x11-libs/libSM
-	x11-libs/libva
+	x11-libs/libva[opengl]
 	x11-libs/libxkbcommon[X]
 	x11-themes/hicolor-icon-theme
 "
