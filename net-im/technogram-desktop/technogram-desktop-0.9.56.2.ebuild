@@ -65,6 +65,7 @@ QTSRC=${LIBRARIES}/Qt
 BREAKPAD=${LIBRARIES}/breakpad
 
 src_unpack(){
+	default
 	# move Qt sources to right location
 	mkdir -p ${QTSRC}
 	mv ${WORKDIR}/qtbase-opensource-src-${_qtver} ${QTSRC}/qtbase
@@ -74,6 +75,7 @@ src_unpack(){
 	EGIT_COMMIT=v${PV}
 	EGIT_CHECKOUT_DIR=${P}
 	git-r3_src_unpack
+	unset EGIT_COMMIT
 	# unpack breakpad
 	EGIT_REPO_URI=${EGIT_REPO_BREAKPAD}
 	EGIT_CHECKOUT_DIR=${BREAKPAD}
