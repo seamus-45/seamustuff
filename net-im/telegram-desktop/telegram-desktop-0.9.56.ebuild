@@ -187,10 +187,10 @@ src_compile(){
 }
 
 src_install(){
-	newbin ${S}/Linux/Release/Telegram telegram-desktop
+	newbin ${S}/Linux/Release/Telegram ${PN}
 	insopts -m644
 	for icon_size in 16 32 48 64 128 256 512; do
-		newicon -s ${icon_size} ${S}/Telegram/Resources/art/icon${icon_size}.png telegram-desktop.png
+		newicon -s ${icon_size} ${S}/Telegram/Resources/art/icon${icon_size}.png ${PN}.png
 	done
 	make_desktop_entry "${PN} %u" "Telegram" ${PN} "Network;" "MimeType=application/x-xdg-protocol-tg;x-scheme-handler/tg;\n"
 }
