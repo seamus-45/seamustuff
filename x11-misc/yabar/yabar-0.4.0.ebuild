@@ -18,5 +18,6 @@ DEPEND="
 	>=dev-libs/libconfig-1.4
 	x11-libs/xcb-util-wm
 	x11-libs/cairo
+	x11-libs/gdk-pixbuf
 "
 RDEPEND="${DEPEND}"
