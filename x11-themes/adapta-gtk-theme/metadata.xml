@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>sr.fido@gmail.com</email>
+		<name>Sergey Fedotov</name>
+	</maintainer>
+	<use>
+		<flag name="cinnamon">Cinnamon support</flag>
+		<flag name="flashback">Gnome Flashback support</flag>
+		<flag name="unity">Unity support</flag>
+		<flag name="xfce">Xfce support</flag>
+		<flag name="mate">Mate support</flag>
+		<flag name="openbox">Openbox support</flag>
+		<flag name="chrome">Chrome(ium) support</flag>
+		<flag name="plank">Plank support</flag>
+		<flag name="custom_palette">My own custom colors for selection, etc..</flag>
+	</use>
+</pkgmetadata>
