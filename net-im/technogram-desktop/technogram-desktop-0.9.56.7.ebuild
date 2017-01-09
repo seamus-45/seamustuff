@@ -94,7 +94,7 @@ src_prepare(){
 	# add russian language
 	cp ${FILESDIR}/lang_ru-${PV}.strings ${S}/Telegram/Resources/langs/lang_ru.strings
 	epatch ${FILESDIR}/lang_ru-${PV}.patch
-	echo 'OTHER_FILES += SourceFiles/langs/lang_ru.strings' >> ${S}/Telegram/Telegram.pro
+	echo 'OTHER_FILES += ./Resources/langs/lang_ru.strings' >> ${S}/Telegram/Telegram.pro
 	# disable auto update and custom shceme
 	echo 'DEFINES += TDESKTOP_DISABLE_AUTOUPDATE' >> ${S}/Telegram/Telegram.pro
 	echo 'DEFINES += TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME' >> ${S}/Telegram/Telegram.pro
@@ -197,7 +197,6 @@ src_install(){
 	for icon_size in 16 32 48 64 128 256 512; do
 		newicon -s ${icon_size} ${S}/Telegram/Resources/art/icon${icon_size}.png ${PN}.png
 	done
-	make_desktop_entry "${PN} %u" "Technogram" ${PN} "Network;" "MimeType=application/x-xdg-protocol-tg;x-scheme-handler/tg;\n"
 }
 
 pkg_postinst(){
