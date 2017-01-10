@@ -4,7 +4,7 @@
 
 EAPI=5
 
-_qtver=5.6.0
+_qtver=5.6.2
 
 inherit eutils gnome2-utils fdo-mime git-r3
 
@@ -16,40 +16,56 @@ SRC_URI="(
 	https://github.com/telegramdesktop/tdesktop/archive/v${PV}.tar.gz -> ${P}.tar.gz
 )"
 EGIT_REPO_BREAKPAD='https://chromium.googlesource.com/breakpad/breakpad'
+EGIT_REPO_GYP="https://chromium.googlesource.com/external/gyp"
 EGIT_REPO_LSS='https://chromium.googlesource.com/linux-syscall-support'
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 
 RDEPEND="
+	>=media-video/ffmpeg-3.1.0
 	dev-libs/icu
-	dev-libs/openssl
-	media-libs/freetype[harfbuzz,png]
 	media-libs/jasper
-	media-libs/libjpeg-turbo
 	media-libs/libmng
-	>=media-libs/openal-1.16.0[portaudio]
-	media-libs/opus
-	media-libs/tiff
-	virtual/ffmpeg
-	net-libs/libproxy
-	sys-libs/mtdev
-	sys-libs/zlib
-	x11-libs/libSM
-	x11-libs/libva[opengl]
 	x11-libs/libxkbcommon[X]
+	dev-libs/libinput
+	net-libs/libproxy
+	>=media-libs/openal-1.16.0[portaudio]
+	x11-libs/tslib
+	x11-libs/xcb-util-wm
+	x11-libs/xcb-util-keysyms
+	x11-libs/xcb-util-image
+	x11-libs/xcb-util-renderutil
 	x11-themes/hicolor-icon-theme
+	media-libs/opus
+	dev-libs/openssl
+	sys-libs/zlib
 "
 
 DEPEND="${RDEPEND}
 	dev-libs/libappindicator:2
 	dev-libs/libunity
+	x11-libs/libva[opengl]
+	sys-libs/mtdev
+	media-libs/libexif
+	media-libs/libwebp
+	x11-libs/libXrender
+	x11-libs/libXi
+	dev-db/sqlite
+	x11-libs/xcb-util-image
+	media-libs/harfbuzz[icu]
+	x11-libs/libSM
+	media-libs/libjpeg-turbo
+	media-libs/libpng
+	media-libs/tiff
+	>=dev-util/cmake-3.6.2
 "
 
 LIBRARIES=${WORKDIR}/Libraries
 QTSRC=${LIBRARIES}/Qt
 BREAKPAD=${LIBRARIES}/breakpad
+GYP=${LIBRARIES}/gyp
 
 src_unpack(){
 	# unpack Telegram and Qt
@@ -66,35 +82,29 @@ src_unpack(){
 	EGIT_REPO_URI=${EGIT_REPO_LSS}
 	EGIT_CHECKOUT_DIR="${BREAKPAD}/src/third_party/lss"
 	git-r3_src_unpack
+	# unpack gyp
+	EGIT_REPO_URI=${EGIT_REPO_GYP}
+	EGIT_CHECKOUT_DIR=${GYP}
+	git-r3_src_unpack
 }
 
 src_prepare(){
 	cd ${QTSRC}/qtbase
 	# Telegram uses 'slightly' patched Qt
 	epatch ${S}/Telegram/Patches/qtbase_${_qtver//./_}.diff
+	cd ${GYP}
+	git apply ${S}/Telegram/Patches/gyp.diff || die "Patch failed"
+
 	cd ${S}
-	# add russian language
+	# add russian language and fix gyp
 	cp ${FILESDIR}/lang_ru-${PV}.strings ${S}/Telegram/Resources/langs/lang_ru.strings
 	epatch ${FILESDIR}/lang_ru-${PV}.patch
-	echo 'OTHER_FILES += SourceFiles/langs/lang_ru.strings' >> ${S}/Telegram/Telegram.pro
-	# disable auto update and custom shceme
-	echo 'DEFINES += TDESKTOP_DISABLE_AUTOUPDATE' >> ${S}/Telegram/Telegram.pro
-	echo 'DEFINES += TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME' >> ${S}/Telegram/Telegram.pro
+	epatch ${FILESDIR}/gyp-${PV}.patch
 	# resolve #383179
-	echo 'DEFINES += "OF=_Z_OF"' >> ${S}/Telegram/Telegram.pro
-	# use shared openssl
-	echo 'LIBS += -lcrypto -lssl' >> ${S}/Telegram/Telegram.pro
-	# use shared zlib and libxkbcommon
-	sed -i 's,/usr/local/lib/libxkbcommon.a,-lxkbcommon,' ${S}/Telegram/Telegram.pro
-	sed -i 's,/usr/local/lib/libz.a,-lz,' ${S}/Telegram/Telegram.pro
-	# we do not have custom API ID
-	sed -i '/CUSTOM_API_ID/d' ${S}/Telegram/Telegram.pro
+	#echo 'DEFINES += "OF=_Z_OF"' >> ${S}/Telegram/Telegram.pro
 	# make multi-arch libs dir to be proper for Gentoo
-	sed -i 's,lib/x86_64-linux-gnu,lib64,g' ${S}/Telegram/Telegram.pro
-	sed -i 's,lib/i386-linux-gnu,lib32,g' ${S}/Telegram/Telegram.pro
-	# fix Qt location
-	sed -i "s,/usr/local/tdesktop/Qt-5.6.0,${WORKDIR}/qt,g" ${S}/Telegram/Telegram.pro
-
+	#sed -i 's,lib/x86_64-linux-gnu,lib64,g' ${S}/Telegram/Telegram.pro
+	#sed -i 's,lib/i386-linux-gnu,lib32,g' ${S}/Telegram/Telegram.pro
 }
 
 src_configure(){
@@ -112,6 +122,7 @@ src_configure(){
 			-system-xcb \
 			-system-xkbcommon-x11 \
 			-no-opengl \
+			-no-gtkstyle \
 			-static \
 			-nomake examples \
 			-nomake tests
@@ -124,7 +135,7 @@ src_compile(){
 	cd ${QTSRC}/qtbase
 	emake || die 'Make failed'
 	emake install || die 'Make failed'
-	export PATH="${WORKDIR}/qt/bin:$PATH"
+	export PATH="${WORKDIR}/qt/bin:${PATH}"
 	cd ${QTSRC}/qtimageformats
 	qmake .
 	emake || die 'Make failed'
@@ -133,42 +144,28 @@ src_compile(){
 	# build breakpad
 	cd ${BREAKPAD}
 	emake || die 'Make failed'
-	
-	# build codegen_style
-	mkdir -p ${S}/Linux/obj/codegen_style/Debug
-	cd ${S}/Linux/obj/codegen_style/Debug
-	qmake CONFIG+=debug ${S}/Telegram/build/qmake/codegen_style/codegen_style.pro
-	emake || die "Make failed"
-
-	# build codegen_numbers
-	mkdir -p ${S}/Linux/obj/codegen_numbers/Debug
-	cd ${S}/Linux/obj/codegen_numbers/Debug
-	qmake CONFIG+=debug ${S}/Telegram/build/qmake/codegen_numbers/codegen_numbers.pro
-	emake || die "Make failed"
-
-	# build MetaLang
-	mkdir -p ${S}/Linux/DebugIntermediateLang
-	cd ${S}/Linux/DebugIntermediateLang
-	qmake CONFIG+=debug ${S}/Telegram/MetaLang.pro
-	emake || die 'Make failed'
 
 	# Build Telegram Desktop
-	mkdir -p ${S}/Linux/ReleaseIntermediate
-	cd ${S}/Linux/ReleaseIntermediate
-	${S}/Linux/codegen/Debug/codegen_style "-I${S}/Telegram/Resources" "-I${S}/Telegram/SourceFiles" "-o${S}/Telegram/GeneratedFiles/styles" all_files.style --rebuild
-	${S}/Linux/codegen/Debug/codegen_numbers "-o${S}/Telegram/GeneratedFiles" "${S}/Telegram/Resources/numbers.txt"
-	${S}/Linux/DebugLang/MetaLang -lang_in ${S}/Telegram/Resources/langs/lang.strings -lang_out ${S}/Telegram/GeneratedFiles/lang_auto
-	qmake CONFIG+=release ${S}/Telegram/Telegram.pro
+	cd ${S}/Telegram/gyp
+	${GYP}/gyp \
+		-Dlinux_path_qt="${WORKDIR}/qt" \
+		-DOF=_Z_OF \
+		-Dlinux_lib_ssl=-lssl \
+		-Dlinux_lib_crypto=-lcrypto \
+		-Dlinux_lib_icu="-licuuc -licutu -licui18n" \
+		--depth=. --generator-output=../.. -Goutput_dir=out Telegram.gyp --format=cmake || die "Gyp failed"
+	cd ${S}/out/Release
+	cmake . || die "Cmake failed"
 	emake || die 'Make failed'
 }
 
 src_install(){
-	newbin ${S}/Linux/Release/Telegram telegram-desktop
+	newbin ${S}/out/Release/Telegram ${PN}
 	insopts -m644
 	for icon_size in 16 32 48 64 128 256 512; do
-		newicon -s ${icon_size} ${S}/Telegram/Resources/art/icon${icon_size}.png telegram-desktop.png
+		newicon -s ${icon_size} ${S}/Telegram/Resources/art/icon${icon_size}.png ${PN}.png
 	done
-	make_desktop_entry "${PN} %u" "Telegram" ${PN} "Network;" "MimeType=application/x-xdg-protocol-tg;x-scheme-handler/tg;\n"
+	make_desktop_entry "${PN} -- %u" "Telegram" ${PN} "Network;" "MimeType=x-scheme-handler/tg;"
 }
 
 pkg_postinst(){
