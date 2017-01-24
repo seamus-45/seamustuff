@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>sr.fido@gmail.com</email>
+		<name>Sergey Fedotov</name>
+	</maintainer>
+	<use>
+		<flag name="luastatus_barlibs_dwm">Build dwm barlib</flag>
+		<flag name="luastatus_barlibs_i3">Build i3 barlib</flag>
+		<flag name="luastatus_barlibs_lemonbar">Build lemonbar barlib</flag>
+		<flag name="luastatus_plugins_alsa">Build alsa plugin</flag>
+		<flag name="luastatus_plugins_fs">Build fs plugin</flag>
+		<flag name="luastatus_plugins_mpd">Build mpd plugin</flag>
+		<flag name="luastatus_plugins_pipe">Build pipe plugin</flag>
+		<flag name="luastatus_plugins_timer">Build timer plugin</flag>
+		<flag name="luastatus_plugins_xkb">Build xkb plugin</flag>
+		<flag name="luastatus_plugins_xtitle">Build xtitle plugin</flag>
+	</use>
+</pkgmetadata>
