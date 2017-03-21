@@ -35,7 +35,8 @@ RDEPEND=">=dev-libs/glib-2.26:2
 	python-plugins? ( dev-lang/python:2.7 )
 	"
 
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	sys-devel/autoconf-archive"
 
 src_prepare() {
 	eautoreconf
