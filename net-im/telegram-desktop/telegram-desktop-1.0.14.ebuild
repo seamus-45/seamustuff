@@ -15,16 +15,14 @@ SRC_URI="(
 	http://download.qt.io/official_releases/qt/${_qtver%.*}/${_qtver}/submodules/qtimageformats-opensource-src-${_qtver}.tar.xz
 	https://github.com/telegramdesktop/tdesktop/archive/v${PV}.tar.gz -> ${P}.tar.gz
 )"
-EGIT_REPO_BREAKPAD='https://chromium.googlesource.com/breakpad/breakpad'
 EGIT_REPO_GYP="https://chromium.googlesource.com/external/gyp"
-EGIT_REPO_LSS='https://chromium.googlesource.com/linux-syscall-support'
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
-	>=media-video/ffmpeg-3.1.0
+	>=media-video/ffmpeg-3.2.0
 	dev-libs/icu
 	media-libs/jasper
 	media-libs/libmng
@@ -44,6 +42,7 @@ RDEPEND="
 "
 
 DEPEND="${RDEPEND}
+	dev-libs/google-breakpad
 	dev-libs/libappindicator:2
 	dev-libs/libunity
 	x11-libs/libva[opengl]
@@ -60,11 +59,11 @@ DEPEND="${RDEPEND}
 	media-libs/libpng
 	media-libs/tiff
 	>=dev-util/cmake-3.6.2
+	app-admin/chrpath	
 "
 
 LIBRARIES=${WORKDIR}/Libraries
 QTSRC=${LIBRARIES}/Qt
-BREAKPAD=${LIBRARIES}/breakpad
 GYP=${LIBRARIES}/gyp
 
 src_unpack(){
@@ -74,14 +73,6 @@ src_unpack(){
 	mkdir -p ${QTSRC}
 	mv ${WORKDIR}/qtbase-opensource-src-${_qtver} ${QTSRC}/qtbase
 	mv ${WORKDIR}/qtimageformats-opensource-src-${_qtver} ${QTSRC}/qtimageformats
-	# unpack breakpad
-	EGIT_REPO_URI=${EGIT_REPO_BREAKPAD}
-	EGIT_CHECKOUT_DIR=${BREAKPAD}
-	git-r3_src_unpack
-	# unpack linux syscall support plugin
-	EGIT_REPO_URI=${EGIT_REPO_LSS}
-	EGIT_CHECKOUT_DIR="${BREAKPAD}/src/third_party/lss"
-	git-r3_src_unpack
 	# unpack gyp
 	EGIT_REPO_URI=${EGIT_REPO_GYP}
 	EGIT_CHECKOUT_DIR=${GYP}
@@ -99,9 +90,7 @@ src_prepare(){
 	# add russian language and fix gyp
 	cp ${FILESDIR}/lang_ru-${PV}.strings ${S}/Telegram/Resources/langs/lang_ru.strings
 	epatch ${FILESDIR}/lang_ru-${PV}.patch
-	epatch ${FILESDIR}/gyp-${PV}.patch
-	# resolve #383179
-	#echo 'DEFINES += "OF=_Z_OF"' >> ${S}/Telegram/Telegram.pro
+	epatch ${FILESDIR}/gyp-fixes-${PV}.patch
 	# make multi-arch libs dir to be proper for Gentoo
 	#sed -i 's,lib/x86_64-linux-gnu,lib64,g' ${S}/Telegram/Telegram.pro
 	#sed -i 's,lib/i386-linux-gnu,lib32,g' ${S}/Telegram/Telegram.pro
@@ -121,13 +110,11 @@ src_configure(){
 			-system-pcre \
 			-system-xcb \
 			-system-xkbcommon-x11 \
-			-no-opengl \
 			-no-gtkstyle \
 			-static \
 			-nomake examples \
-			-nomake tests
-	cd ${BREAKPAD}
-	./configure
+			-nomake tests \
+			# -no-opengl \
 }
 
 src_compile(){
@@ -141,10 +128,6 @@ src_compile(){
 	emake || die 'Make failed'
 	emake install || die 'Make failed'
 
-	# build breakpad
-	cd ${BREAKPAD}
-	emake || die 'Make failed'
-
 	# Build Telegram Desktop
 	cd ${S}/Telegram/gyp
 	${GYP}/gyp \
@@ -157,6 +140,7 @@ src_compile(){
 	cd ${S}/out/Release
 	cmake . || die "Cmake failed"
 	emake || die 'Make failed'
+	chrpath --delete Telegram
 }
 
 src_install(){
