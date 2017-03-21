@@ -6,9 +6,7 @@
 <name>Serge Fedotov</name>
 </maintainer>
   <use>
-	<flag name="droid">Use Droid Sans Mono Slashed font by default</flag>
-	<flag name="nobold">No bold colors</flag>
-	<flag name="solarized_light">Use a light theme by default</flag>
-	<flag name="solarized_dark">Use a dark theme by default</flag>
+	<flag name="droid">Apply a 'Droid Sans Mono Slashed' font</flag>
+	<flag name="monokai">Apply a monokai theme</flag>
   </use>
 </pkgmetadata>

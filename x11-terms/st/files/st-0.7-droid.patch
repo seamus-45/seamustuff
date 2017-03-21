@@ -1,0 +1,12 @@
+diff -Naur a/config.h b/config.h
+--- a/config.h	2017-03-21 16:45:40.070583168 +0500
++++ b/config.h	2017-03-21 16:46:28.752584508 +0500
+@@ -5,7 +5,7 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char font[] = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++static char font[] = "Droid Sans Mono Slashed:pixelsize=15:antialias=true:autohint=true";
+ static int borderpx = 2;
+ 
+ /*
