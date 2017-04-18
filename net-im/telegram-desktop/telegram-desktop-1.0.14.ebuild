@@ -91,9 +91,6 @@ src_prepare(){
 	cp ${FILESDIR}/lang_ru-${PV}.strings ${S}/Telegram/Resources/langs/lang_ru.strings
 	epatch ${FILESDIR}/lang_ru-${PV}.patch
 	epatch ${FILESDIR}/gyp-fixes-${PV}.patch
-	# make multi-arch libs dir to be proper for Gentoo
-	#sed -i 's,lib/x86_64-linux-gnu,lib64,g' ${S}/Telegram/Telegram.pro
-	#sed -i 's,lib/i386-linux-gnu,lib32,g' ${S}/Telegram/Telegram.pro
 }
 
 src_configure(){
