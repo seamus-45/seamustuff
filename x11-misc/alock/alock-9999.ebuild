@@ -15,7 +15,7 @@ fi
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="imlib pam dunst"
+IUSE="imlib pam dunst xbacklight"
 
 DEPEND="x11-libs/libX11
 	x11-libs/libXext
@@ -24,7 +24,8 @@ DEPEND="x11-libs/libX11
 	x11-libs/libXcursor
 	imlib? ( media-libs/imlib2[X] )
 	pam? ( virtual/pam )
-	dunst? ( x11-misc/dunst )"
+	dunst? ( x11-misc/dunst )
+	xbacklight? ( x11-apps/xbacklight )"
 
 src_prepare() {
 	eautoreconf
@@ -40,6 +41,7 @@ src_configure() {
 		--enable-xpm \
 		$(use_enable pam) \
 		$(use_enable imlib imlib2) \
-		$(use_with dunst) || die
+		$(use_with dunst) \
+		$(use_with xbacklight)|| die
 }
 
