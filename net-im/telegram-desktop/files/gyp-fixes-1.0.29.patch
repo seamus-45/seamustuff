@@ -1,0 +1,195 @@
+diff -Naur a/Telegram/gyp/qt.gypi b/Telegram/gyp/qt.gypi
+--- a/Telegram/gyp/qt.gypi	2017-04-05 15:39:31.000000000 +0500
++++ b/Telegram/gyp/qt.gypi	2017-04-06 17:47:52.294866003 +0500
+@@ -38,7 +38,6 @@
+             'Qt5Network',
+             'Qt5Widgets',
+             'Qt5Gui',
+-            'qtharfbuzzng',
+           ],
+           'qt_version%': '<(qt_version)',
+           'conditions': [
+@@ -97,20 +96,6 @@
+               '<@(qt_libs)',
+               'Qt5DBus',
+               'Qt5Core',
+-              'qtpcre',
+-              'Xi',
+-              'Xext',
+-              'Xfixes',
+-              'SM',
+-              'ICE',
+-              'fontconfig',
+-              'expat',
+-              'freetype',
+-              'z',
+-              'xcb-shm',
+-              'xcb-xfixes',
+-              'xcb-render',
+-              'xcb-static',
+             ],
+           }],
+         ],
+@@ -220,7 +205,6 @@
+         '<(qt_loc)/plugins/platforminputcontexts',
+       ],
+       'libraries': [
+-        '<(linux_path_xkbcommon)/lib/libxkbcommon.a',
+         '<@(qt_libs_release)',
+         '<(linux_lib_ssl)',
+         '<(linux_lib_crypto)',
+@@ -233,12 +217,31 @@
+         'gthread-2.0',
+         'glib-2.0',
+         'pthread',
++
++        'Xi',
++        'Xext',
++        'Xfixes',
++        'SM',
++        'ICE',
++        'fontconfig',
++        'expat',
++        'freetype',
++
++        '<!(pkg-config 2> /dev/null --libs xkbcommon xkbcommon-x11)',
++        '<!(pkg-config 2> /dev/null --libs harfbuzz)',
++        '<!(pkg-config 2> /dev/null --libs libpcre16)',
++        '<!(pkg-config 2> /dev/null --libs zlib)',
++        '<!(pkg-config 2> /dev/null --libs libpng16)',
++        '<!(pkg-config 2> /dev/null --libs libjpeg)',
++        '<!(pkg-config 2> /dev/null --libs libwebp)',
++        '<!(pkg-config 2> /dev/null --libs xcb-shm xcb-xfixes xcb-render xcb-renderutil xcb-sync xcb-randr xcb-xinerama xcb-xkb xcb-icccm xcb-image xcb-shape xcb-keysyms xcb-util)',
++        'proxy',
++        'GL',
+       ],
+       'include_dirs': [
+         '<(qt_loc)/mkspecs/linux-g++',
+       ],
+       'ldflags': [
+-        '-static-libstdc++',
+         '-pthread',
+         '-g',
+         '-rdynamic',
+diff -Naur a/Telegram/gyp/settings_linux.gypi b/Telegram/gyp/settings_linux.gypi
+--- a/Telegram/gyp/settings_linux.gypi	2017-04-05 15:39:31.000000000 +0500
++++ b/Telegram/gyp/settings_linux.gypi	2017-04-06 17:49:24.963866245 +0500
+@@ -25,7 +25,6 @@
+           '-pipe',
+           '-g',
+           '-Wall',
+-          '-Werror',
+           '-W',
+           '-fPIC',
+           '-Wno-unused-variable',
+diff -Naur a/Telegram/gyp/Telegram.gyp b/Telegram/gyp/Telegram.gyp
+--- a/Telegram/gyp/Telegram.gyp	2017-04-06 17:15:31.479860933 +0500
++++ b/Telegram/gyp/Telegram.gyp	2017-04-06 17:47:52.295866003 +0500
+@@ -83,21 +83,20 @@
+     ],
+ 
+     'defines': [
+-      'AL_LIBTYPE_STATIC',
+       '<!@(python -c "for s in \'<(build_defines)\'.split(\',\'): print(s)")',
++      '__STDC_FORMAT_MACROS',
++      'TDESKTOP_DISABLE_AUTOUPDATE',
++      'TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME',
++      'TDESKTOP_DISABLE_DESKTOP_FILE_GENERATION',
++      'OF=_Z_OF',
+     ],
+ 
+     'include_dirs': [
+       '<(src_loc)',
+       '<(SHARED_INTERMEDIATE_DIR)',
+-      '<(libs_loc)/breakpad/src',
+-      '<(libs_loc)/lzma/C',
+-      '<(libs_loc)/libexif-0.6.20',
+-      '<(libs_loc)/zlib-1.2.8',
+-      '<(libs_loc)/ffmpeg',
+-      '<(libs_loc)/openal-soft/include',
+       '<(minizip_loc)',
+       '<(sp_media_key_tap_loc)',
++      '/usr/include/breakpad',
+       '<(submodules_loc)/GSL/include',
+       '<(submodules_loc)/variant/include',
+     ],
+diff -Naur a/Telegram/gyp/telegram_linux.gypi b/Telegram/gyp/telegram_linux.gypi
+--- a/Telegram/gyp/telegram_linux.gypi	2017-04-05 15:39:31.000000000 +0500
++++ b/Telegram/gyp/telegram_linux.gypi	2017-04-06 17:47:52.295866003 +0500
+@@ -21,11 +21,20 @@
+   'conditions': [[ 'build_linux', {
+     'variables': {
+       'pkgconfig_libs': [
+-# In order to work libxkbcommon must be linked statically,
+-# PKGCONFIG links it like "-L/usr/local/lib -lxkbcommon"
+-# which makes a dynamic link which leads to segfault in
+-# QApplication() -> createPlatformIntegration -> QXcbIntegrationPlugin::create
+-        #'xkbcommon',
++        'liblzma',
++        'openal',
++        'libavformat',
++        'libavcodec',
++        'libswresample',
++        'libswscale',
++        'libavutil',
++        'opus',
++        'libva-x11',
++        'libva-drm',
++        'libva',
++        'vdpau',
++        'libdrm',
++        'zlib',
+       ],
+       'linux_path_ffmpeg%': '/usr/local',
+       'linux_path_openal%': '/usr/local',
+@@ -35,46 +44,24 @@
+       'linux_path_breakpad%': '<(libs_loc)/breakpad',
+     },
+     'include_dirs': [
+-      '/usr/local/include',
+-      '<(linux_path_ffmpeg)/include',
+-      '<(linux_path_openal)/include',
+-      '<(linux_path_breakpad)/include/breakpad',
++      '/usr/include',
+     ],
+     'library_dirs': [
+-      '/usr/local/lib',
+-      '<(linux_path_ffmpeg)/lib',
+-      '<(linux_path_openal)/lib',
+-      '<(linux_path_libexif_lib)',
+-      '<(linux_path_va)/lib',
+-      '<(linux_path_vdpau)/lib',
+-      '<(linux_path_breakpad)/lib',
++      '/usr/lib',
+     ],
+     'libraries': [
+       'breakpad_client',
+       'composeplatforminputcontextplugin',
+       'ibusplatforminputcontextplugin',
+       'fcitxplatforminputcontextplugin',
+-      'liblzma.a',
+-      'libopenal.a',
+-      'libavformat.a',
+-      'libavcodec.a',
+-      'libswresample.a',
+-      'libswscale.a',
+-      'libavutil.a',
+-      'libopus.a',
+-      'libva-x11.a',
+-      'libva-drm.a',
+-      'libva.a',
+-      'libvdpau.a',
+-      'libdrm.a',
+-      'libz.a',
+-#      '<!(pkg-config 2> /dev/null --libs <@(pkgconfig_libs))',
++      '<!(pkg-config 2> /dev/null --libs <@(pkgconfig_libs))',
+     ],
+     'cflags_cc': [
+       '<!(pkg-config 2> /dev/null --cflags appindicator-0.1)',
+       '<!(pkg-config 2> /dev/null --cflags gtk+-2.0)',
+       '<!(pkg-config 2> /dev/null --cflags glib-2.0)',
+       '<!(pkg-config 2> /dev/null --cflags dee-1.0)',
++      '<!(pkg-config 2> /dev/null --cflags <@(pkgconfig_libs))',
+     ],
+     'configurations': {
+       'Release': {
