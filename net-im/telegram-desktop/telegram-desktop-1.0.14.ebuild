@@ -129,7 +129,6 @@ src_compile(){
 	cd ${S}/Telegram/gyp
 	${GYP}/gyp \
 		-Dlinux_path_qt="${WORKDIR}/qt" \
-		-DOF=_Z_OF \
 		-Dlinux_lib_ssl=-lssl \
 		-Dlinux_lib_crypto=-lcrypto \
 		-Dlinux_lib_icu="-licuuc -licutu -licui18n" \
