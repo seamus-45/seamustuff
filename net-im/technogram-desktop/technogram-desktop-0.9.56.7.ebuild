@@ -14,7 +14,7 @@ SRC_URI="(
 	http://download.qt.io/official_releases/qt/${_qtver%.*}/${_qtver}/submodules/qtbase-opensource-src-${_qtver}.tar.xz
 	http://download.qt.io/official_releases/qt/${_qtver%.*}/${_qtver}/submodules/qtimageformats-opensource-src-${_qtver}.tar.xz
 )"
-EGIT_REPO_TECHNOGRAM="git://git.technology45.ru/Messenger/tdesktop.git"
+EGIT_REPO_TECHNOGRAM="git@git.technology45.ru:Messenger/tdesktop.git"
 EGIT_REPO_BREAKPAD='https://chromium.googlesource.com/breakpad/breakpad'
 EGIT_REPO_LSS='https://chromium.googlesource.com/linux-syscall-support'
 
