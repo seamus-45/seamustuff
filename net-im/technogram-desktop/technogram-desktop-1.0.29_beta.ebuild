@@ -46,6 +46,7 @@ RDEPEND="
 "
 
 DEPEND="${RDEPEND}
+	>=sys-devel/gcc-5.1.0
 	dev-libs/google-breakpad
 	dev-libs/libappindicator:2
 	dev-libs/libunity
