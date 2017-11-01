@@ -28,6 +28,10 @@ src_unpack() {
 	git-r3_src_unpack
 }
 
+src_prepare() {
+	epatch ${FILESDIR}/buffer-bug-fix.patch
+}
+
 src_compile() {
 	emake all
 	emake doc

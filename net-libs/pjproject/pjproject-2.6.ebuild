@@ -21,8 +21,10 @@ DEPEND="${RDEPEND}
 src_configure() {
 	econf \
 		--enable-g711-codec \
-		--enable-resample \
+		--disable-resample \
 		--disable-resample-dll \
+		--disable-small-filter \
+		--disable-large-filter \
 		--disable-libsamplerate \
 		--disable-ssl \
 		--disable-sdl \
@@ -32,6 +34,7 @@ src_configure() {
 		--disable-v4l2 \
 		--disable-openh264 \
 		--disable-libyuv \
+		--disable-libwebrtc \
 		--disable-speex-codec \
 		--disable-speex-aec \
 		--disable-l16-codec \
