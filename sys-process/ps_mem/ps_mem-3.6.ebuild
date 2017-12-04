@@ -12,6 +12,9 @@ DESCRIPTION='A utility to accurately report the in core memory usage for a progr
 HOMEPAGE="https://github.com/pixelb/ps_mem"
 SRC_URI="https://github.com/pixelb/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
+RDEPEND="dev-python/setuptools[${PYTHON_USEDEP}]"
+DEPEND="${RDEPEND}"
+
 
 LICENSE='LGPL-2.1'
 SLOT='0'
