@@ -1,0 +1,76 @@
+diff -Naur a/Makefile.am b/Makefile.am
+--- a/Makefile.am	2017-12-08 13:36:54.956408752 +0500
++++ b/Makefile.am	2017-12-08 13:37:06.302999861 +0500
+@@ -6,7 +6,7 @@
+ 	autogen.sh
+ 
+ #gnomemenudir = $(DESTDIR)$(datadir)$(packagemenudir)
+-#gnomemenudir = $(DESTDIR)$(datadir)/gnome/apps/Multimedia
++#gnomemenudir = $(DESTDIR)$(datadir)/applications
+ #gnomemenu_DATA = gnaural.desktop
+ 
+ #gnaural_glade_filedir = $(DESTDIR)$(pkgdatadir)
+@@ -22,8 +22,8 @@
+ 	    fi \
+ 	  done \
+ 	fi; \
+-	$(mkinstalldirs) $(DESTDIR)$(datadir)/gnome/apps/Multimedia; \
+-	$(INSTALL_DATA) gnaural.desktop $(DESTDIR)$(datadir)/gnome/apps/Multimedia; \
++	$(mkinstalldirs) $(DESTDIR)$(datadir)/applications; \
++	$(INSTALL_DATA) gnaural.desktop $(DESTDIR)$(datadir)/applications; \
+ 	$(INSTALL_DATA) src/gnaural.glade $(DESTDIR)$(pkgdatadir);
+ 
+ dist-hook:
+diff -Naur a/Makefile.in b/Makefile.in
+--- a/Makefile.in	2017-12-08 13:36:54.958408680 +0500
++++ b/Makefile.in	2017-12-08 13:37:06.304999789 +0500
+@@ -733,7 +733,7 @@
+ 
+ 
+ #gnomemenudir = $(DESTDIR)$(datadir)$(packagemenudir)
+-#gnomemenudir = $(DESTDIR)$(datadir)/gnome/apps/Multimedia
++#gnomemenudir = $(DESTDIR)$(datadir)/applications
+ #gnomemenu_DATA = gnaural.desktop
+ 
+ #gnaural_glade_filedir = $(DESTDIR)$(pkgdatadir)
+@@ -749,8 +749,8 @@
+ 	    fi \
+ 	  done \
+ 	fi; \
+-	$(mkinstalldirs) $(DESTDIR)$(datadir)/gnome/apps/Multimedia; \
+-	$(INSTALL_DATA) gnaural.desktop $(DESTDIR)$(datadir)/gnome/apps/Multimedia; \
++	$(mkinstalldirs) $(DESTDIR)$(datadir)/applications; \
++	$(INSTALL_DATA) gnaural.desktop $(DESTDIR)$(datadir)/applications; \
+ 	$(INSTALL_DATA) src/gnaural.glade $(DESTDIR)$(pkgdatadir);
+ 
+ dist-hook:
+diff -Naur a/src/BinauralBeat.c b/src/BinauralBeat.c
+--- a/src/BinauralBeat.c	2017-12-08 13:36:54.958408680 +0500
++++ b/src/BinauralBeat.c	2017-12-08 13:37:16.740623757 +0500
+@@ -980,7 +980,7 @@
+ }
+ 
+ //======================================
+-inline void BB_ResetAllVoices ()
++void BB_ResetAllVoices ()
+ {
+  if (BB_Voice != NULL)
+  {
+diff -Naur a/src/gnauralXML.h b/src/gnauralXML.h
+--- a/src/gnauralXML.h	2017-12-08 13:36:54.957408716 +0500
++++ b/src/gnauralXML.h	2017-12-08 13:37:11.541811084 +0500
+@@ -35,4 +35,5 @@
+ extern void gxml_XMLParser (const gchar * CurrentElement, const gchar * Attribute, const gchar * Value);        //internal use
+ extern int gxml_XMLEventDataParser (const gchar * DataType, const gchar * Value, const int internal_EntryCount);        //internal use
+ extern void gxml_XMLParser_counter (const gchar * CurrentElement, const gchar * Attribute, const gchar * Value);        //always must give valid strings. Also BEWARE: Attribute will equal NULL if there are none
++extern inline void BB_ResetAllVoices ();
+ #endif
+diff -Naur a/src/main.h b/src/main.h
+--- a/src/main.h	2017-12-08 13:36:54.957408716 +0500
++++ b/src/main.h	2017-12-08 13:37:11.541811084 +0500
+@@ -199,4 +199,5 @@
+ extern double Stopwatch ();     //20101109
+ extern void main_PhaseInfoToggle (unsigned int ip, unsigned short port);
+ extern void main_DPPropertiesDialog ();
++extern inline void BB_ResetAllVoices ();
+ #endif
