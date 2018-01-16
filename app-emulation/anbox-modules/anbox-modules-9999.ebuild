@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit git-r3 linux-mod
+inherit git-r3 linux-info linux-mod
 
 DESCRIPTION="Required kernel modules for Anbox"
 HOMEPAGE="https://anbox.io/"
@@ -14,21 +14,31 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
+DEPEND="virtual/linux-sources"
+
 S="${WORKDIR}/${P}/kernel"
+
+MODULE_NAMES="ashmem_linux(virt:${S}/ashmem) binder_linux(virt:${S}/binder)"
+
+pkg_setup() {
+	linux-mod_pkg_setup
+
+	BUILD_PARAMS="KERNELDIR=${KERNEL_DIR}"
+	BUILD_TARGETS="all"
+}
 
 src_prepare() {
 	sed -i 's:, NAME="%k"::g' 99-anbox.rules
-	default
-}
+	if kernel_is ge 4 14 0; then
+		sed -i "s:__vfs_read:kernel_read:" ${S}/ashmem/ashmem.c
+	fi
 
-src_configure() {
-	MODULE_NAMES="ashmem_linux(virt:${S}/ashmem) binder_linux(virt:${S}/binder)"
-	BUILD_PARAMS='KERNELDIR="${KERNEL_DIR}"'
-	BUILD_TARGETS="all"
+	default
 }
 
 src_install() {
 	linux-mod_src_install
+
 	insinto /etc/modules-load.d/
 	doins anbox.conf
 	insinto /lib/udev/rules.d/
