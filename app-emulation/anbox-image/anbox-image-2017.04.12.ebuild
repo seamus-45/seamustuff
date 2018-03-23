@@ -9,7 +9,7 @@ MY_PV=${PV//./\/}
 
 DESCRIPTION="Android image for using with anbox"
 HOMEPAGE="https://source.android.com"
-SRC_URI="https://build.anbox.io/android-images/${MY_PV}/android_1_arm64.img -> ${P}.img"
+SRC_URI="https://build.anbox.io/android-images/${MY_PV}/android_1_amd64.img -> ${P}.img"
 RESTRICT="mirror"
 
 LICENSE="Apache 2.0"
