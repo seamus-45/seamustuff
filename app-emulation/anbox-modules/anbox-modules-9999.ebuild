@@ -7,7 +7,7 @@ inherit git-r3 linux-info linux-mod
 
 DESCRIPTION="Required kernel modules for Anbox"
 HOMEPAGE="https://anbox.io/"
-EGIT_REPO_URI="https://github.com/anbox/anbox.git"
+EGIT_REPO_URI="https://github.com/anbox/${PN}.git"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -15,8 +15,6 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="virtual/linux-sources"
-
-S="${WORKDIR}/${P}/kernel"
 
 MODULE_NAMES="ashmem_linux(virt:${S}/ashmem) binder_linux(virt:${S}/binder)"
 
