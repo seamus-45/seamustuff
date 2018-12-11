@@ -36,6 +36,6 @@ RDEPEND="${DEPEND}
 	>=dev-python/rsa-3.4.2[${PYTHON_USEDEP}]
 	>=dev-python/six-1.10.0[${PYTHON_USEDEP}]
 	>=dev-python/validictory-1.0.2[${PYTHON_USEDEP}]
-	>=dev-libs/protobuf-3.0.0
+	>=dev-python/protobuf-python-3.0.0[${PYTHON_USEDEP}]
 	>=media-libs/mutagen-1.34.1[$PYTHON_USEDEP]
 "
