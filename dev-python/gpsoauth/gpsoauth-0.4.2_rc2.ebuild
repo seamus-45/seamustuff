@@ -17,7 +17,7 @@ IUSE=""
 
 DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}
-	>=dev-python/pycryptodome-3.4.0[${PYTHON_USEDEP}]
+	>=dev-python/pycryptodomex-3.4.0[${PYTHON_USEDEP}]
 	>=dev-python/requests-2.18.4[${PYTHON_USEDEP}]
 "
 S="${WORKDIR}/${PN}-0.4.2-rc.2"
