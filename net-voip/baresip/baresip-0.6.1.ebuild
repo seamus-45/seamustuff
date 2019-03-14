@@ -3,6 +3,8 @@
 
 EAPI=6
 
+inherit eutils
+
 DESCRIPTION="Portable and modular SIP User-Agent with audio and video support."
 HOMEPAGE="http://www.creytiv.com/baresip.html"
 SRC_URI="https://github.com/alfredh/baresip/releases/download/v${PV}/${P}.tar.gz"
@@ -18,6 +20,11 @@ DEPEND="net-voip/re
 	libressl? ( >=dev-libs/libressl-2.0.0 )
 "
 RDEPEND="${DEPEND}"
+
+src_prepare() {
+	epatch ${FILESDIR}/fix-subscribe-topic.patch
+	default
+}
 
 src_compile() {
 	emake RELEASE=1 LIBDIR="${EPREFIX}/usr/$(get_libdir)"
