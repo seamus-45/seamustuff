@@ -20,7 +20,7 @@ pkg_setup() {
 }
 
 src_compile() {
-	emake RELEASE=1 LIBDIR="${EPREFIX}/usr/$(get_libdir)"
+	emake LIBDIR="${EPREFIX}/usr/$(get_libdir)"
 }
 
 src_install() {
