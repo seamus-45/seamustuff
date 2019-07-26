@@ -1,0 +1,14 @@
+diff -Naur a/src/ua.c b/src/ua.c
+--- a/src/ua.c	2019-07-26 14:50:48.940143460 +0500
++++ b/src/ua.c	2019-07-26 14:51:31.541648415 +0500
+@@ -690,9 +690,7 @@
+ 	if (err)
+ 		goto out;
+ 
+-	/* generate a unique contact-user, this is needed to route
+-	   incoming requests when using multiple useragents */
+-	err = re_sdprintf(&ua->cuser, "%r-%p", &ua->acc->luri.user, ua);
++	err = re_sdprintf(&ua->cuser, "%r", &ua->acc->luri.user);
+ 	if (err)
+ 		goto out;
+ 

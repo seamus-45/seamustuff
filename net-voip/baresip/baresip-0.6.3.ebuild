@@ -23,6 +23,7 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch ${FILESDIR}/${PV}-fix-subscribe-topic.patch
+	epatch ${FILESDIR}/${PV}-disable-unique-aor.patch
 	default
 }
 
