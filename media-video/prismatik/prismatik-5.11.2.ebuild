@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=7
 
 inherit qmake-utils udev
 
@@ -41,7 +41,7 @@ src_prepare() {
 }
 
 src_configure() {
-	eqmake5 ${MY_PN}.pro
+	eqmake7 ${MY_PN}.pro
 }
 
 src_install() {
