@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit git-2 eutils
+inherit git-r3 eutils
 
 DESCRIPTION="A free, open source, cross-platform video editor"
 HOMEPAGE="http://www.shotcut.org/"

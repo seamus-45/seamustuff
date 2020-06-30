@@ -2,7 +2,7 @@
 
 EAPI="5"
 
-inherit autotools git-2
+inherit autotools git-r3
 
 EGIT_REPO_URI="git://github.com/strophe/libstrophe.git"
 

@@ -1,35 +1,31 @@
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-# $Header: $
+EAPI=7
+PYTHON_COMPAT=( python2_7 python3_6 )
 
-EAPI=5
-PYTHON_COMPAT=( python2_7 )
-
-inherit bzr distutils-r1 gnome2-utils
+inherit distutils-r1 gnome2-utils git-r3
 
 DESCRIPTION="Ambient Noise Player. Integrate noise into your sound indicator and relax or concentrate."
 HOMEPAGE="https://launchpad.net/anoise"
-EBZR_REPO_URI="lp:anoise"
+EGIT_REPO_URI="https://github.com/costales/anoise"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="+extension1 +extension2 +extension3"
-
-RDEPEND="dev-python/gst-python:0.10
-media-libs/gstreamer:0.10[introspection]
+RDEPEND="media-sound/anoise-media
+dev-python/gst-python:1.0
+media-libs/gstreamer:1.0[introspection]
 x11-libs/gtk+:3[introspection]
-media-sound/anoise-media
-extension1? ( media-sound/anoise-extension1 )
-extension2? ( media-sound/anoise-extension2 )
-extension3? ( media-sound/anoise-extension3 )
+net-libs/webkit-gtk:4[introspection]
 "
+
 DEPEND="${RDEPEND}
 dev-python/setuptools[${PYTHON_USEDEP}]
 dev-python/python-distutils-extra[${PYTHON_USEDEP}]
-dev-vcs/bzr
 "
+
+src_unpack() {
+	git-r3_src_unpack
+}
 
 pkg_preinst() {
 	gnome2_icon_savelist

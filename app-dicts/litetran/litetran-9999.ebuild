@@ -3,7 +3,7 @@
 
 EAPI=5
 
-inherit cmake-utils git-2
+inherit cmake-utils git-r3
 
 EGIT_REPO_URI="https://bitbucket.org/gfarniev/litetran.git"
 EGIT_BRANCH="master"
