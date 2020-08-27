@@ -15,6 +15,11 @@ IUSE=""
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+src_prepare() {
+	sed -i 's@^mandir.*$@mandir\t = $(prefix)/share/man@' ${S}/makefile
+	default
+}
+
 src_install() {
 	emake prefix="${D}/usr" install || die "installation failed"
 	dodoc CHANGES COPYING README
