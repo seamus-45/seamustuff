@@ -1,9 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit scons-utils eutils toolchain-funcs multilib git-r3
+PYTHON_COMPAT=( python3_{6,7} )
+inherit python-any-r1 scons-utils eutils toolchain-funcs git-r3
 
 DESCRIPTION="A speech synthesizer for Russian (and similar) language"
 HOMEPAGE="https://github.com/Olga-Yakovleva/RHVoice"
@@ -12,10 +13,7 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-RDEPEND=""
-DEPEND="
-	${RDEPEND}
-	dev-lang/python
+RDEPEND="
 	app-accessibility/flite
 	dev-libs/libunistring
 	dev-libs/expat
@@ -23,10 +21,11 @@ DEPEND="
 	media-sound/sox
 	dev-util/scons
 "
+DEPEND="
+	${RDEPEND}
+"
 
 DOCS=(README)
-
-# TODO: multilib support (just in case)
 
 src_compile() {
 	escons prefix=/usr sysconfdir=/etc libdir=/usr/$(get_libdir)

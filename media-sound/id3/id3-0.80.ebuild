@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 DESCRIPTION="id3 mass tagger is a tool for manipulating id3 and id3v2 tags in multiple files."
 HOMEPAGE="https://squell.github.io/id3/"

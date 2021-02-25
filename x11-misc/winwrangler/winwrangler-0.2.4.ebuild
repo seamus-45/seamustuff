@@ -2,13 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
-
-inherit versionator
+EAPI=7
 
 DESCRIPTION="Desktop daemon for advanced window manipulations."
 HOMEPAGE="http://launchpad.net/winwrangler"
-SRC_URI="http://launchpad.net/winwrangler/$(get_version_component_range 1-2)/${PV}/+download/${P}.tar.gz"
+SRC_URI="http://launchpad.net/winwrangler/$(ver_cut 1-2)/${PV}/+download/${P}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"
