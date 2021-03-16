@@ -4,17 +4,17 @@
 
 EAPI=7
 
-inherit cmake git-r3
+inherit cmake
 
 CMAKE_BUILD_TYPE="Release"
 
 DESCRIPTION="Qt RPC for neovim"
 HOMEPAGE="https://github.com/equalsraf/neovim-qt"
-EGIT_REPO_URI="https://github.com/equalsraf/neovim-qt.git"
+SRC_URI="https://github.com/equalsraf/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="ISC"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="gcov +msgpack"
 
 DEPEND="
