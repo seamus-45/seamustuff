@@ -3,11 +3,12 @@
 
 EAPI=7
 
-inherit qmake-utils
+inherit cmake git-r3
 
 DESCRIPTION="Powerful yet simple to use screenshot software"
 HOMEPAGE="https://flameshot.js.org"
-SRC_URI="https://github.com/lupoDharkael/flameshot/archive/v0.6.0.tar.gz"
+EGIT_REPO_URI="https://github.com/seamus-45/flameshot.git"
+EGIT_BRANCH="custom-upload-hosting"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -20,7 +21,3 @@ RDEPEND="${DEPEND}
 	dev-qt/qtsvg:5
 	dev-qt/linguist-tools
 "
-
-src_configure() {
-	eqmake5 PREFIX="${D}"/usr CONFIG+=packaging
-}
